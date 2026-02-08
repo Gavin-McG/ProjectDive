@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc0125f27e16f84684a0a989de7a222, type: 3}
   m_Name: CustomLightingFeature
   m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowFeature
-  m_Active: 1
+  m_Active: 0
   showInScene: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   backgroundIntensity: 2

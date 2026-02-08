@@ -32,11 +32,11 @@ public class SpriteLightingFeature : ScriptableRendererFeature
     [SerializeField] List<MaskLayerData> maskLayers = new List<MaskLayerData>();
     
     [Header("Materials")]
-    [SerializeField] Material lightMaterial;
-    [SerializeField] Material shadowMaterial;
-    [SerializeField] Material emitMaterial;
-    [SerializeField] Material gaussianMaterial;
-    [SerializeField] Material applyLightMaterial;
+    [SerializeField] UnityEngine.Material lightMaterial;
+    [SerializeField] UnityEngine.Material shadowMaterial;
+    [SerializeField] UnityEngine.Material emitMaterial;
+    [SerializeField] UnityEngine.Material gaussianMaterial;
+    [SerializeField] UnityEngine.Material applyLightMaterial;
     
     [Header("Blur Details")]
     [SerializeField, Min(20)] int verticalResolution = 120;
@@ -84,11 +84,11 @@ public class SpriteLightingFeature : ScriptableRendererFeature
         public Color backgroundColor;
         public float backgroundIntensity;
         public List<MaskLayerData> maskLayers;
-        public Material lightMaterial;
-        public Material shadowMaterial;
-        public Material emitMaterial;
-        public Material gaussianMaterial;
-        public Material applyLightMaterial;
+        public UnityEngine.Material lightMaterial;
+        public UnityEngine.Material shadowMaterial;
+        public UnityEngine.Material emitMaterial;
+        public UnityEngine.Material gaussianMaterial;
+        public UnityEngine.Material applyLightMaterial;
         public int verticalResolution;
         public int blurSize;
         public float blurSigma;
@@ -113,7 +113,7 @@ public class SpriteLightingFeature : ScriptableRendererFeature
             public float intensity;
         }
 
-        Material GetMaterial(MaskLayerData.LightMode mode) => mode switch
+        UnityEngine.Material GetMaterial(MaskLayerData.LightMode mode) => mode switch
         {
             MaskLayerData.LightMode.Light => lightMaterial,
             MaskLayerData.LightMode.Shadow => shadowMaterial,
@@ -180,7 +180,7 @@ public class SpriteLightingFeature : ScriptableRendererFeature
                 if (!maskLayer.active) continue;
                 
                 // Choose the correct material to use
-                Material material = GetMaterial(maskLayer.mode);
+                UnityEngine.Material material = GetMaterial(maskLayer.mode);
                 if (material == null)
                 {
                     Debug.LogError($"Material for {maskLayer.mode} not found");
