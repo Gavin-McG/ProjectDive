@@ -73,41 +73,33 @@ MonoBehaviour:
   verticalResolution: 120
   showInScene: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundIntensity: 0.97
-  maskLayers:
-  - layerName: Wall
+  backgroundIntensity: 2.9
+  lightLayers:
+  - layerName: BackWall
     active: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 536871168
-    color: {r: 0, g: 0.23530686, b: 0.3301887, a: 0}
-    intensity: 0
-    mode: 1
-  - layerName: Tiles
-    active: 1
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 268435520
-    color: {r: 0, g: 0, b: 0, a: 0}
+      m_Bits: 536870912
+    color: {r: 0.039159846, g: 0.113682196, b: 0.1509434, a: 0}
     intensity: 0
     mode: 1
   - layerName: Lights
     active: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 134217856
-    color: {r: 1, g: 1, b: 1, a: 1}
-    intensity: 15
+      m_Bits: 134217728
+    color: {r: 1, g: 1, b: 1, a: 0}
+    intensity: 6
     mode: 0
-  - layerName: Reduce Tile Light
+  - layerName: Tiles
     active: 1
     layerMask:
       serializedVersion: 2
-      m_Bits: 268435584
-    color: {r: 0.021, g: 0.021, b: 0.021, a: 0}
+      m_Bits: 268435456
+    color: {r: 0, g: 0, b: 0, a: 0}
     intensity: 0
     mode: 1
-  lightShader: {fileID: 4800000, guid: d9cee803e2924006b24edb8dcde8dab2, type: 3}
+  lightShader: {fileID: -6465566751694194690, guid: c51f27abc73cef34fb7c5a3a27d36a7e, type: 3}
   shadowShader: {fileID: 4800000, guid: 90338babd0124a8ca4f3a2f16261e964, type: 3}
   emitShader: {fileID: 4800000, guid: 4de791b0733d4b919802776ed5bfbfbf, type: 3}
   gaussianShader: {fileID: 4800000, guid: 9d1349666e26db14aa420ad43443005a, type: 3}
