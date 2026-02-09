@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06635a89b9bf0594f96274a289b92d7b, type: 3}
   m_Name: SaveFile
   m_EditorClassIdentifier: WolverineSoft.SaveSystem::WolverineSoft.SaveSystem.SaveFile
-  fileName: 
+  fileName: Main

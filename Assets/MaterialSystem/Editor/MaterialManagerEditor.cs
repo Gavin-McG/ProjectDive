@@ -3,15 +3,15 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(MaterialManager))]
+[CustomEditor(typeof(ItemManager))]
 public class MaterialManagerEditor : Editor
 {
     private VisualElement root;
-    private MaterialManager manager;
+    private ItemManager manager;
 
     public override VisualElement CreateInspectorGUI()
     {
-        manager = (MaterialManager)target;
+        manager = (ItemManager)target;
 
         root = new VisualElement();
         root.style.paddingLeft = 6;
@@ -39,23 +39,23 @@ public class MaterialManagerEditor : Editor
         if (manager == null)
             return;
 
-        foreach (var material in Resources.LoadAll<Material>(""))
+        foreach (var material in Resources.LoadAll<ItemSO>(""))
         {
             DrawMaterialRow(material);
         }
     }
 
-    private void DrawMaterialRow(Material material)
+    private void DrawMaterialRow(ItemSO itemSo)
     {
         var row = new VisualElement();
         row.style.flexDirection = FlexDirection.Row;
         row.style.marginBottom = 2;
 
-        var nameLabel = new Label(material.name);
+        var nameLabel = new Label(itemSo.name);
         nameLabel.style.flexGrow = 1;
         nameLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
 
-        int currentCount = manager.GetMaterialCount(material);
+        int currentCount = manager.GetItemCount(itemSo);
 
         var countField = new IntegerField
         {
@@ -66,7 +66,7 @@ public class MaterialManagerEditor : Editor
         countField.RegisterValueChangedCallback(evt =>
         {
             Undo.RecordObject(manager, "Change Material Count");
-            manager.SetMaterialCount(material, Mathf.Max(0, evt.newValue));
+            manager.SetItemCount(itemSo, Mathf.Max(0, evt.newValue));
             EditorUtility.SetDirty(manager);
         });
 

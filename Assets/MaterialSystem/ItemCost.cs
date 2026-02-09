@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
-public class MaterialCost
+public class ItemCost
 {
     [Serializable]
     public struct CostEntry
     {
-        [SerializeField] public Material material;
+        [FormerlySerializedAs("item")] [SerializeField] public ItemSO itemSo;
         [SerializeField] public int count;
     }
     
-    [SerializeField] public List<CostEntry> materials;
+    [SerializeField] public List<CostEntry> items;
 }

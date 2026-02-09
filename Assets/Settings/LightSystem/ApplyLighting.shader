@@ -1,10 +1,5 @@
 Shader "LightSystem/ApplyLighting"
 {
-    Properties
-    {
-        _Intensity ("Intensity", Float) = 2.0
-        _BrightDampen ("Brightness Dampening Factor", Float) = 0.5
-    }
     SubShader
     {
         Tags {"RenderPipeline" = "UniversalPipeline"}

@@ -69,10 +69,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc0125f27e16f84684a0a989de7a222, type: 3}
   m_Name: CustomLightingFeature
   m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowFeature
-  m_Active: 0
+  m_Active: 1
   showInScene: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundIntensity: 2
+  backgroundIntensity: 0.97
   maskLayers:
   - layerName: Wall
     active: 1
@@ -106,11 +106,13 @@ MonoBehaviour:
     color: {r: 0.021, g: 0.021, b: 0.021, a: 0}
     intensity: 0
     mode: 1
-  lightMaterial: {fileID: -876546973899608171, guid: e3f8ab4282fd88b419009f2c37ef9085, type: 3}
-  shadowMaterial: {fileID: 2100000, guid: 99b4fb44592be364d820f8d829d1ee4b, type: 2}
-  emitMaterial: {fileID: 2100000, guid: 189a345736067b24d9174f069477be7c, type: 2}
-  gaussianMaterial: {fileID: 2100000, guid: c9b3f063178db4349adae27900b9af97, type: 2}
-  applyLightMaterial: {fileID: 2100000, guid: 010c76259a531974dbecc70e59e4e0d0, type: 2}
+  lightShader: {fileID: 4800000, guid: d9cee803e2924006b24edb8dcde8dab2, type: 3}
+  shadowShader: {fileID: 4800000, guid: 90338babd0124a8ca4f3a2f16261e964, type: 3}
+  emitShader: {fileID: 4800000, guid: 4de791b0733d4b919802776ed5bfbfbf, type: 3}
+  gaussianShader: {fileID: 4800000, guid: 9d1349666e26db14aa420ad43443005a, type: 3}
+  applyLightShader: {fileID: 4800000, guid: 8da2563ff7568a745a167cdd0de1efce, type: 3}
   verticalResolution: 120
   blurSize: 30
   blurSigma: 9.67
+  intensity: 1
+  brightDampening: 0.5
