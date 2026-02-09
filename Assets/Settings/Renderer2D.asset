@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: CustomLightingFeature
   m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowFeature
   m_Active: 1
+  verticalResolution: 120
   showInScene: 1
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   backgroundIntensity: 0.97
@@ -110,8 +111,7 @@ MonoBehaviour:
   shadowShader: {fileID: 4800000, guid: 90338babd0124a8ca4f3a2f16261e964, type: 3}
   emitShader: {fileID: 4800000, guid: 4de791b0733d4b919802776ed5bfbfbf, type: 3}
   gaussianShader: {fileID: 4800000, guid: 9d1349666e26db14aa420ad43443005a, type: 3}
-  applyLightShader: {fileID: 4800000, guid: 8da2563ff7568a745a167cdd0de1efce, type: 3}
-  verticalResolution: 120
+  applyShader: {fileID: 4800000, guid: 8da2563ff7568a745a167cdd0de1efce, type: 3}
   blurSize: 30
   blurSigma: 9.67
   intensity: 1
