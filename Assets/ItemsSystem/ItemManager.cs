@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
     {
         items.Add(itemSo);
         itemCounts[itemSo] = itemSo.defaultCount;
-        itemsByName[itemSo.itemName] = itemSo;
+        itemsByName[itemSo.name] = itemSo;
         return itemCounts[itemSo];
     }
 
@@ -149,7 +149,7 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
         {
             saveData.entries.Add(new SaveData.ItemEntry()
             {
-                itemName = item.itemName,
+                itemName = item.name,
                 count = itemCounts[item]
             });
         }
