@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="DataFile" id="{f36998b7-c493-4715-b5ca-ad13a8152a6e}">
+		<property name="assetPath">
+			<value>Audio/SFX.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{40bd467d-0d93-46e2-8575-ff5f0caffcb2}</destination>
+		</relationship>
+	</object>
+</objects>

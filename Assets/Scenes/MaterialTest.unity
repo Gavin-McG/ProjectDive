@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPopups
   popupStayDuration: 1
-  collectSound: {fileID: 8300000, guid: ed0a39835b62f55448e08680e036e271, type: 3}
   volume: 0
   flyingItem: {fileID: 9197481963319205126, guid: 944ee9a8d42a29249a6c7561dc5c2dbd, type: 3}
   flyingDuration: 0.75

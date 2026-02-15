@@ -12,8 +12,8 @@ public class ItemPopups : MonoBehaviour
     
     [Header("Popup Settings")]
     [SerializeField] private float popupStayDuration = 1f;
-    [SerializeField] private AudioClip collectSound;
-    [SerializeField] private float volume;
+    //[SerializeField] private AudioClip collectSound;
+    //[SerializeField] private float volume;
     [Header("UI Assets")]
     [SerializeField] private VisualTreeAsset flyingItem;
     [Header("Animation")]
@@ -48,6 +48,7 @@ public class ItemPopups : MonoBehaviour
             popupItems.Add(null);
             popupCount.Add(0);
         }
+
     }
 
     /// <summary>
@@ -140,9 +141,13 @@ public class ItemPopups : MonoBehaviour
             return;
         
         popups[popupNum].Q<Label>("Text").text = ItemManager.Instance.AddItemCount(entry.itemSo, entry.count).ToString();
-        
-        if (collectSound)
+
+        /*if (collectSound)
             AudioSource.PlayClipAtPoint(collectSound, Camera.main.transform.position, volume);
+        */
+
+        // Invoke the FMOD event as a one-shot
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Item Collect", Camera.main.transform.position);
 
         popupCount[popupNum]--;
         if (popupCount[popupNum] == 0)
