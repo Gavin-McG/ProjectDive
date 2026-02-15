@@ -30,7 +30,7 @@ MonoBehaviour:
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 805306423
+    m_Bits: 805306495
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
   m_HDREmulationScale: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowFeature
   m_Active: 1
   verticalResolution: 120
-  showInScene: 1
+  showInScene: 0
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   backgroundIntensity: 2.9
   lightLayers:
@@ -80,7 +80,7 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 536870912
-    color: {r: 0.039159846, g: 0.113682196, b: 0.1509434, a: 0}
+    color: {r: 0.027634388, g: 0.15718746, b: 0.21698111, a: 0}
     intensity: 0
     mode: 1
   - layerName: Lights

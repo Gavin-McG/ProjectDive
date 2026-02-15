@@ -1,0 +1,45 @@
+:root {
+}
+
+.popup {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    background-image: url("project://database/Assets/ItemsSystem/UI/Sprites/CollectPopup.png?fileID=2800000&guid=e7696d5d2a695b24e8d4659adb4b120e&type=3#CollectPopup");
+    margin-right: 5px;
+    margin-left: 5px;
+    transition-duration: 0.7s;
+}
+
+.popupImage {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    background-image: url("project://database/Assets/ItemsSystem/resourceSprites.png?fileID=-2290196265563507890&guid=8983f42f2f14aa74598b122a0e81cfb5&type=3#resource_plywood");
+}
+
+.popupText {
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    -unity-text-align: middle-center;
+    font-size: 50px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+}
+
+.popupOpen {
+    transition-duration: 0.7s;
+    margin-top: 120px;
+}
