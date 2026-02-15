@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [Serializable]
-public class ItemCost
+public class ItemSet
 {
     [Serializable]
-    public struct CostEntry
+    public struct ItemEntry
     {
         [FormerlySerializedAs("item")] [SerializeField] public ItemSO itemSo;
         [SerializeField] public int count;
     }
     
-    [SerializeField] public List<CostEntry> items;
+    [SerializeField] public List<ItemEntry> items;
 }

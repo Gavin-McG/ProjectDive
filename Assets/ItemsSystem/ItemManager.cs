@@ -125,9 +125,9 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
         itemCounts[itemSo] = newCount;
     }
 
-    public bool CanAfford(ItemCost cost)
+    public bool CanAfford(ItemSet set)
     {
-        foreach (var entry in cost.items)
+        foreach (var entry in set.items)
         {
             if (GetItemCount(entry.itemSo) < entry.count)
                 return false;
@@ -137,11 +137,11 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
     }
 
     // Attempt to charge the current item counts by a specified amount - returns whether charge was succefsful
-    public bool ChargeItems(ItemCost cost, bool ignoreAfford = false)
+    public bool ChargeItems(ItemSet set, bool ignoreAfford = false)
     {
-        if (!ignoreAfford && !CanAfford(cost)) return false;
+        if (!ignoreAfford && !CanAfford(set)) return false;
 
-        foreach (var entry in cost.items)
+        foreach (var entry in set.items)
         {
             AddItemCount(entry.itemSo, -entry.count);
         }
