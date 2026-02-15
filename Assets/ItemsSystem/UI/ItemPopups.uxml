@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Popup" src="project://database/Assets/ItemsSystem/UI/PopupHolder.uxml?fileID=9197481963319205126&amp;guid=e881941f038c9524cadf13e3fb9049d0&amp;type=3#PopupHolder"/>
+    <Style src="project://database/Assets/ItemsSystem/UI/ItemStyles.uss?fileID=7433441132597879392&amp;guid=303da6185e28b224f9d758f675ecb0fe&amp;type=3#ItemStyles"/>
+    <ui:VisualElement name="PopupContainer" style="flex-grow: 1; flex-direction: row; width: auto; height: 240px; min-height: 240px; max-height: 240px; top: -120px;">
+        <ui:Instance template="Popup" name="PopupHolder"/>
+        <ui:Instance template="Popup" name="PopupHolder"/>
+        <ui:Instance template="Popup" name="PopupHolder"/>
+        <ui:Instance template="Popup" name="PopupHolder"/>
+        <ui:Instance template="Popup" name="PopupHolder"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="FlyingItems" style="flex-grow: 1; position: absolute; top: 0; right: 0; bottom: 0; left: 0;"/>
+</ui:UXML>

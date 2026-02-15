@@ -108,7 +108,7 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
     }
 
     // Increment the count of an item by a specified value - Add the 
-    public void AddItemCount(ItemSO itemSo, int count)
+    public int AddItemCount(ItemSO itemSo, int count)
     {
         if (itemSo == null)
         {
@@ -123,6 +123,7 @@ public class ItemManager : MonoBehaviour, ISaveData<ItemManager.SaveData>
         
         int newCount = Mathf.Max(0,itemCounts[itemSo] + count);
         itemCounts[itemSo] = newCount;
+        return newCount;
     }
 
     public bool CanAfford(ItemSet set)

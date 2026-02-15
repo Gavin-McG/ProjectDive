@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,11 +38,12 @@ public class ItemCollector : MonoBehaviour
 
     private void CollectItems(InputAction.CallbackContext context)
     {
-        foreach (ItemCollectible collectible in queuedItems)
+        List<ItemCollectible> temp = queuedItems.Select(c => c).ToList();
+        foreach (ItemCollectible collectible in temp)
         {
             foreach (ItemSet.ItemEntry entry in collectible.CollectItems().items)
             {
-                ItemManager.Instance.AddItemCount(entry.itemSo, entry.count);
+                ItemPopups.Instance.AddItem(entry, collectible.transform.position);
             }
         }
     }
