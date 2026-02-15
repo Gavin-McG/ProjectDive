@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Renderer Feature for adding lighting using Layers with Illumination Rules / Colors
@@ -13,94 +14,198 @@ using UnityEngine.Rendering.RenderGraphModule.Util;
 public class SpriteLightingFeature : ScriptableRendererFeature
 {
     [Serializable]
-    public class MaskLayerData
+    public class LightLayerData
     {
         public enum LightMode { Light, Shadow, Emit }
         
-        [SerializeField] public string layerName = "Example Name";
-        [SerializeField] public bool active = true;
-        [SerializeField] public LayerMask layerMask;
-        [SerializeField] public Color color = Color.white;
-        [SerializeField] public float intensity = 1;
-        [SerializeField] public LightMode mode = LightMode.Light;
+        public string layerName = "Example Name";
+        public bool active = true;
+        public LayerMask layerMask;
+        public Color color = Color.white;
+        public float intensity = 1;
+        public LightMode mode = LightMode.Light;
     }
     
     [Header("Lighting Details")]
+    [SerializeField, Min(20)] int verticalResolution = 120;
     [SerializeField] bool showInScene = true;
     [SerializeField] Color backgroundColor = Color.white; 
     [SerializeField] float backgroundIntensity = 1.0f;
-    [SerializeField] List<MaskLayerData> maskLayers = new List<MaskLayerData>();
+    [SerializeField] List<LightLayerData> lightLayers = new List<LightLayerData>();
     
     [Header("Materials")]
-    [SerializeField] Material lightMaterial;
-    [SerializeField] Material shadowMaterial;
-    [SerializeField] Material emitMaterial;
-    [SerializeField] Material gaussianMaterial;
-    [SerializeField] Material applyLightMaterial;
+    [SerializeField] Shader lightShader;
+    [SerializeField] Shader shadowShader;
+    [SerializeField] Shader emitShader;
+    [SerializeField] Shader gaussianShader;
+    [SerializeField] Shader applyShader;
     
     [Header("Blur Details")]
-    [SerializeField, Min(20)] int verticalResolution = 120;
     [SerializeField] int blurSize = 20;
     [SerializeField] float blurSigma = 10.0f;
     
-    private SpriteLightingPass _spriteLightingPass;
+    [Header("Apply Lighting Details")]
+    [SerializeField] public float intensity = 1.0f;
+    [SerializeField, Range(0,1)] public float brightDampening = 0.5f;
     
-    private static readonly int LightingColorID = Shader.PropertyToID("_LightingColor");
-    private static readonly int IntensityID = Shader.PropertyToID("_Intensity");
-    private static readonly int TexelSizeID = Shader.PropertyToID("_TexelSize");
-    private static readonly int DirectionID = Shader.PropertyToID("_Direction");
-    private static readonly int SizeID = Shader.PropertyToID("_Size");
-    private static readonly int SigmaID = Shader.PropertyToID("_Sigma");
+    private CreateTexturesPass createTexturesPass;
+    private RenderLayersPass renderLayersPass;
+    private BlurLightPass verticalBlurPass;
+    private BlurLightPass horizontalBlurPass;
+    private ApplyLightingPass applyLightPass;
+    
+    private class LightingData : ContextItem
+    {
+        public TextureHandle lightTexture;
+        public TextureHandle tempTexture;
+        public Vector2 texelSize;
+        public CameraType camType;
+        public bool showInScene;
+
+        public override void Reset()
+        {
+            lightTexture = TextureHandle.nullHandle;
+            tempTexture = TextureHandle.nullHandle;
+            camType = CameraType.Game;
+            texelSize = Vector2.zero;
+            showInScene = false;
+        }
+
+        public bool IsValid()
+        {
+            return lightTexture.IsValid() && tempTexture.IsValid();
+        }
+
+        public bool DisplayPass()
+        {
+            return IsValid() && DisplayLighting(camType, showInScene);
+        }
+    }
+    
+    public static bool DisplayLighting(CameraType type, bool showInScene)
+    {
+        return type == CameraType.Game || (type == CameraType.SceneView && showInScene);
+    }
     
     public override void Create()
     {
-        _spriteLightingPass = new SpriteLightingPass()
+        createTexturesPass = new CreateTexturesPass()
         {
             renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
-
-            //Light Details
             showInScene = showInScene,
+            verticalResolution = verticalResolution,
+        };
+        renderLayersPass = new RenderLayersPass()
+        {
+            renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
             backgroundColor = backgroundColor,
             backgroundIntensity = backgroundIntensity,
-            maskLayers = maskLayers,
-            
-            //Materials
-            lightMaterial = lightMaterial,
-            shadowMaterial = shadowMaterial,
-            emitMaterial = emitMaterial,
-            gaussianMaterial = gaussianMaterial,
-            applyLightMaterial = applyLightMaterial,
-            
-            //Blur Settings
-            verticalResolution = verticalResolution,
+            lightLayers = lightLayers,
+        };
+        verticalBlurPass = new BlurLightPass()
+        {
+            renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
             blurSize = blurSize,
             blurSigma = blurSigma,
+            direction = BlurLightPass.Direction.Vertical,
+        };
+        horizontalBlurPass = new BlurLightPass()
+        {
+            renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
+            blurSize = blurSize,
+            blurSigma = blurSigma,
+            direction = BlurLightPass.Direction.Horizontal,
+        };
+        applyLightPass = new ApplyLightingPass()
+        {
+            renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
+            intensity = intensity,
+            brightDampening = brightDampening,
         };
     }
     
-    private class SpriteLightingPass : ScriptableRenderPass
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+    {
+        // Re-Assign Materials if necessary
+        renderLayersPass.UpdateMaterials(lightShader, shadowShader, emitShader);
+        verticalBlurPass.UpdateMaterials(gaussianShader);
+        horizontalBlurPass.UpdateMaterials(gaussianShader);
+        applyLightPass.UpdateMaterials(applyShader);
+        
+        // Add pass
+        renderer.EnqueuePass(createTexturesPass);
+        renderer.EnqueuePass(renderLayersPass);
+        renderer.EnqueuePass(verticalBlurPass);
+        renderer.EnqueuePass(horizontalBlurPass);
+        renderer.EnqueuePass(applyLightPass);
+    }
+    
+    #region CREATE_TEXTURES_PASS
+
+    /// <summary>
+    /// Simple pass to create the textures and shared data used by following passes in the feature
+    /// </summary>
+    private class CreateTexturesPass : ScriptableRenderPass
     {
         public bool showInScene = true;
+        public int verticalResolution = 120;
+        
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
+            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
+            TextureHandle mainTex = resourceData.activeColorTexture;
+
+            // Create descriptions for HDR textures
+            TextureDesc desc = mainTex.GetDescriptor(renderGraph);
+            desc.name = "Shadow Temp Texture";
+            float imageAspect = (float)desc.width / desc.height;
+            desc.format = GraphicsFormat.R16G16B16A16_SFloat;
+            desc.width = (int)(verticalResolution * imageAspect);
+            desc.height = verticalResolution;
+            desc.depthBufferBits = 0;
+            
+            // Create new Textures
+            var textureData = frameData.Create<LightingData>();
+            textureData.lightTexture = renderGraph.CreateTexture(desc);
+            textureData.tempTexture = renderGraph.CreateTexture(desc);
+            
+            // Cache Texel Size
+            Vector2 textureSize = new Vector2(desc.width, desc.height);
+            textureData.texelSize = Vector2.one / textureSize;
+            textureData.showInScene = showInScene;
+            textureData.camType = cameraData.cameraType;
+        }
+    }
+    
+    #endregion
+    
+    #region RENDER_LAYERS_PASS
+
+    /// <summary>
+    /// Render the Background and each of the specified layers to the lightingTexture
+    /// </summary>
+    private class RenderLayersPass : ScriptableRenderPass
+    {
         public Color backgroundColor;
         public float backgroundIntensity;
-        public List<MaskLayerData> maskLayers;
-        public Material lightMaterial;
-        public Material shadowMaterial;
-        public Material emitMaterial;
-        public Material gaussianMaterial;
-        public Material applyLightMaterial;
-        public int verticalResolution;
-        public int blurSize;
-        public float blurSigma;
+        public List<LightLayerData> lightLayers;
+        
+        private Material lightMaterial;
+        private Material shadowMaterial;
+        private Material emitMaterial;
+        
+        private static readonly int LightingColorID = Shader.PropertyToID("_LightingColor");
+        private static readonly int IntensityID = Shader.PropertyToID("_Intensity");
         
         static readonly ShaderTagId[] ShaderTags =
         {
-            new ShaderTagId("UniversalForward"),
-            new ShaderTagId("Universal2D"),
-            new ShaderTagId("SRPDefaultUnlit")
+            new ("UniversalForward"),
+            new ("Universal2D"),
+            new ("SRPDefaultUnlit")
         };
         private readonly List<ShaderTagId> shaderTagIdList = new ();
-
+        
         class ClearPassData
         {
             public Color color;
@@ -113,40 +218,41 @@ public class SpriteLightingFeature : ScriptableRendererFeature
             public float intensity;
         }
 
-        Material GetMaterial(MaskLayerData.LightMode mode) => mode switch
+        public void UpdateMaterials(Shader lightShader, Shader shadowShader, Shader emitShader)
         {
-            MaskLayerData.LightMode.Light => lightMaterial,
-            MaskLayerData.LightMode.Shadow => shadowMaterial,
-            MaskLayerData.LightMode.Emit => emitMaterial,
+            if (lightMaterial == null) lightMaterial = new Material(lightShader);
+            if (shadowMaterial == null) shadowMaterial = new Material(shadowShader);
+            if (emitMaterial == null) emitMaterial = new Material(emitShader);
+        }
+        
+        Material GetMaterial(LightLayerData.LightMode mode) => mode switch
+        {
+            LightLayerData.LightMode.Light => lightMaterial,
+            LightLayerData.LightMode.Shadow => shadowMaterial,
+            LightLayerData.LightMode.Emit => emitMaterial,
             _ => null
         };
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
-            UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
-            TextureHandle mainTex = resourceData.activeColorTexture;
-
-            // Create temp texture
-            TextureDesc desc = mainTex.GetDescriptor(renderGraph);
-            desc.name = "Shadow Temp Texture";
-            float imageAspect = (float)desc.width / desc.height;
-            desc.format = GraphicsFormat.R16G16B16A16_SFloat;
-            desc.width = (int)(verticalResolution * imageAspect);
-            desc.height = verticalResolution;
-            desc.depthBufferBits = 0;
-
-            TextureHandle lightMaskTex = renderGraph.CreateTexture(desc);
-            TextureHandle blurTempTex = renderGraph.CreateTexture(desc);
+            // Get the required data
+            UniversalRenderingData renderingData = frameData.Get<UniversalRenderingData>();
+            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
+            UniversalLightData lightData = frameData.Get<UniversalLightData>();
+            LightingData lightingData = frameData.Get<LightingData>();
+            
+            // Check if the pass should Render
+            if (!lightingData.DisplayPass()) return;
             
             //----------------------------------------------------------------------
-            //          STEP 0 - Clear texture with background brightness color
+            //         Clear texture with background brightness color
             //----------------------------------------------------------------------
             
             using (var builder = renderGraph.AddRasterRenderPass<ClearPassData>("Background Lighting", out var passData))
             {
                 passData.color = backgroundColor;
                 
-                builder.SetRenderAttachment(lightMaskTex, 0);
+                builder.SetRenderAttachment(lightingData.lightTexture, 0);
                 builder.SetRenderFunc((ClearPassData data, RasterGraphContext context) =>
                 {
                     context.cmd.ClearRenderTarget(RTClearFlags.Color, data.color * backgroundIntensity, 1,0);
@@ -154,55 +260,51 @@ public class SpriteLightingFeature : ScriptableRendererFeature
             }
             
             //----------------------------------------------------------------------
-            //                  STEP 1 - Render Sprites for Light Mask
+            //                 Render Sprites for Light Layers
             //----------------------------------------------------------------------
             
-            // Get Rendering Data
-            UniversalRenderingData renderingData = frameData.Get<UniversalRenderingData>();
-            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
-            UniversalLightData lightData = frameData.Get<UniversalLightData>();
-            var sortFlags = cameraData.defaultOpaqueSortFlags;
-
-            // Only show effect in Game view
-            CameraType type = cameraData.camera.cameraType;
-            if (type != CameraType.Game && (type != CameraType.SceneView || !showInScene))
-                return;
             
             // Create the Drawing Settings
             shaderTagIdList.Clear();
             foreach (ShaderTagId sid in ShaderTags)
                 shaderTagIdList.Add(sid);
-            DrawingSettings drawSettings = RenderingUtils.CreateDrawingSettings(shaderTagIdList, renderingData, cameraData, lightData, sortFlags);
+            
+            DrawingSettings drawSettings = RenderingUtils.CreateDrawingSettings(
+                shaderTagIdList, 
+                renderingData, 
+                cameraData, 
+                lightData, 
+                cameraData.defaultOpaqueSortFlags);
             
             // Draw each of the layers for the mask
-            foreach (var maskLayer in maskLayers)
+            foreach (var layer in lightLayers)
             {
-                if (!maskLayer.active) continue;
+                if (!layer.active) continue;
                 
                 // Choose the correct material to use
-                Material material = GetMaterial(maskLayer.mode);
+                Material material = GetMaterial(layer.mode);
                 if (material == null)
                 {
-                    Debug.LogError($"Material for {maskLayer.mode} not found");
+                    Debug.LogError($"Material for {layer.mode} not found");
                     continue;
                 }
                 drawSettings.overrideMaterial = material;
                 
                 //Create the RenderListParams
-                FilteringSettings filterSettings = new FilteringSettings(RenderQueueRange.transparent, maskLayer.layerMask);
+                FilteringSettings filterSettings = new FilteringSettings(RenderQueueRange.transparent, layer.layerMask);
                 var param = new RendererListParams(renderingData.cullResults, drawSettings, filterSettings);
                 
                 // Add the Raster Render Pass to Draw the Renderers
-                using (var builder = renderGraph.AddRasterRenderPass<LayerPassData>("Lighting Layer - " + maskLayer.layerName, out var passData))
+                using (var builder = renderGraph.AddRasterRenderPass<LayerPassData>($"Draw Lighting Layer {layer.layerName}", out var passData))
                 {
                     passData.rendererList = renderGraph.CreateRendererList(param);
-                    passData.color = maskLayer.color;
-                    passData.intensity = maskLayer.intensity;
+                    passData.color = layer.color;
+                    passData.intensity = layer.intensity;
                     
                     if (passData.rendererList.IsValid())
                     {
                         builder.UseRendererList(passData.rendererList);
-                        builder.SetRenderAttachment(lightMaskTex, 0);
+                        builder.SetRenderAttachment(lightingData.lightTexture, 0);
                         builder.AllowGlobalStateModification(true);
                         
                         builder.SetRenderFunc((LayerPassData data, RasterGraphContext context) =>
@@ -214,57 +316,112 @@ public class SpriteLightingFeature : ScriptableRendererFeature
                     }
                 }
             }
-            
-            //----------------------------------------------------------------------
-            //                  STEP 2 - Perform 2-step Gaussian Blur
-            //----------------------------------------------------------------------
-            
-            // Calculate texel size for Blits
-            Vector2 textureSize = new Vector2(desc.width, desc.height);
-            Vector2 texelSize = Vector2.one / textureSize;
+        }
+    }
+    
+    #endregion
+    
+    #region BLUR_LIGHTING_PASS
 
+    /// <summary>
+    /// Applies a Gaussian Blur to the lightTexture either vertically or horizontally
+    /// </summary>
+    private class BlurLightPass : ScriptableRenderPass
+    {
+        public enum Direction { Vertical, Horizontal }
+        
+        public int blurSize;
+        public float blurSigma;
+        public Direction direction;
+        
+        private Material gaussianMaterial;
+        
+        private static readonly int TexelSizeID = Shader.PropertyToID("_TexelSize");
+        private static readonly int DirectionID = Shader.PropertyToID("_Direction");
+        private static readonly int SizeID = Shader.PropertyToID("_Size");
+        private static readonly int SigmaID = Shader.PropertyToID("_Sigma");
+
+        public void UpdateMaterials(Shader gaussianShader)
+        {
+            if (gaussianMaterial == null) gaussianMaterial = new Material(gaussianShader);
+            gaussianMaterial.SetFloat(SigmaID, blurSigma);
+            gaussianMaterial.SetFloat(SizeID, blurSize);
+            if (direction == Direction.Vertical)
+                gaussianMaterial.SetVector(DirectionID, new Vector2(0,1));
+            else
+                gaussianMaterial.SetVector(DirectionID, new Vector2(1,0));
+        }
+
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            // Get Data
+            LightingData lightingData = frameData.Get<LightingData>();
+            gaussianMaterial.SetVector(TexelSizeID, lightingData.texelSize);
+            
+            // Check if the pass should Render
+            if (!lightingData.DisplayPass()) return;
+            
             // Create Property Blocks for Gaussian Blur steps
-            MaterialPropertyBlock verticalMPB = new MaterialPropertyBlock();
-            verticalMPB.SetVector(TexelSizeID, texelSize);
-            verticalMPB.SetVector(DirectionID, new Vector2(0, 1));
-            verticalMPB.SetInt(SizeID, blurSize);
-            verticalMPB.SetFloat(SigmaID, blurSigma);
-
-            MaterialPropertyBlock horizontalMPB = new MaterialPropertyBlock();
-            horizontalMPB.SetVector(TexelSizeID, texelSize);
-            horizontalMPB.SetVector(DirectionID, new Vector2(1, 0));
-            horizontalMPB.SetInt(SizeID, blurSize);
-            horizontalMPB.SetFloat(SigmaID, blurSigma);
+            TextureHandle src, dst;
+            if (direction == Direction.Vertical)
+            {
+                // Vertical Blur
+                src = lightingData.lightTexture;
+                dst = lightingData.tempTexture;
+            }
+            else
+            {
+                // Horizontal Blur
+                src = lightingData.tempTexture;
+                dst = lightingData.lightTexture;
+            }
 
             // Create Blit Params
-            var verticalParams = new RenderGraphUtils.BlitMaterialParameters(
-                lightMaskTex, blurTempTex,
+            var blitParams = new RenderGraphUtils.BlitMaterialParameters(
+                src, dst,
                 gaussianMaterial,
-                0,
-                verticalMPB
-            );
-
-            var horizontalParams = new RenderGraphUtils.BlitMaterialParameters(
-                blurTempTex, lightMaskTex,
-                gaussianMaterial,
-                0,
-                horizontalMPB
+                0
             );
             
-            // Vertical blur pass
-            renderGraph.AddBlitPass(verticalParams, "Lighting - Vertical Blur");
+            // Queue blur pass
+            renderGraph.AddBlitPass(blitParams, "Directional Lighting Blur");
+        }
+    }
+    
+    #endregion
+    
+    #region APPLY_LIGHTING_PASS
 
-            // Horizontal blur pass (writes back to camera color)
-            renderGraph.AddBlitPass(horizontalParams, "Lighting - Horizontal Blur");
+    private class ApplyLightingPass : ScriptableRenderPass
+    {
+        public float intensity = 1.0f;
+        public float brightDampening = 0.5f;
+        
+        private Material applyMaterial;
+        
+        private static readonly int IntensityID = Shader.PropertyToID("_Intensity");
+        private static readonly int DampenID = Shader.PropertyToID("_BrightDampen");
+
+        public void UpdateMaterials(Shader applyShader)
+        {
+            if (applyMaterial == null) applyMaterial = new Material(applyShader);
+            applyMaterial.SetFloat(IntensityID, intensity);
+            applyMaterial.SetFloat(DampenID, brightDampening);
+        }
+
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            // Get Data
+            UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
+            LightingData lightingData = frameData.Get<LightingData>();
             
-            //----------------------------------------------------------------------
-            //    STEP 3 - Use Blurred LightMask to Shadow camera Texture
-            //----------------------------------------------------------------------
+            // Check if the pass should Render
+            if (!lightingData.DisplayPass()) return;
             
             // Create Blit Params
             var darkenParams = new RenderGraphUtils.BlitMaterialParameters(
-                lightMaskTex, mainTex,
-                applyLightMaterial,
+                lightingData.lightTexture, resourceData.activeColorTexture,
+                applyMaterial,
                 0
             );
 
@@ -272,8 +429,5 @@ public class SpriteLightingFeature : ScriptableRendererFeature
         }
     }
     
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-    {
-        renderer.EnqueuePass(_spriteLightingPass);
-    }
+    #endregion
 }
