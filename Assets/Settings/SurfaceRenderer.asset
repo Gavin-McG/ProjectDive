@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11145981673336645838492a2d98e247, type: 3}
-  m_Name: Renderer2D
+  m_Name: SurfaceRenderer
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
@@ -24,13 +24,12 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 57d7c4c16e2765b47a4d2069b311bffe, type: 3}
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
-  m_RendererFeatures:
-  - {fileID: 3350324113023175102}
-  m_RendererFeatureMap: be092caf07be7e2e
+  m_RendererFeatures: []
+  m_RendererFeatureMap: 
   m_UseNativeRenderPass: 0
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 805306495
+    m_Bits: 805306623
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
   m_HDREmulationScale: 1
@@ -57,54 +56,3 @@ MonoBehaviour:
   m_PostProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_DefaultMaterialType: 0
   m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
---- !u!114 &3350324113023175102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc0125f27e16f84684a0a989de7a222, type: 3}
-  m_Name: CustomLightingFeature
-  m_EditorClassIdentifier: Assembly-CSharp::SpriteShadowFeature
-  m_Active: 1
-  verticalResolution: 120
-  showInScene: 0
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundIntensity: 2.9
-  lightLayers:
-  - layerName: BackWall
-    active: 1
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 536870912
-    color: {r: 0.027634388, g: 0.15718746, b: 0.21698111, a: 0}
-    intensity: 0
-    mode: 1
-  - layerName: Lights
-    active: 1
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 134217728
-    color: {r: 1, g: 1, b: 1, a: 0}
-    intensity: 6
-    mode: 0
-  - layerName: Tiles
-    active: 1
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 268435456
-    color: {r: 0, g: 0, b: 0, a: 0}
-    intensity: 0
-    mode: 1
-  lightShader: {fileID: -6465566751694194690, guid: c51f27abc73cef34fb7c5a3a27d36a7e, type: 3}
-  shadowShader: {fileID: 4800000, guid: 90338babd0124a8ca4f3a2f16261e964, type: 3}
-  emitShader: {fileID: 4800000, guid: 4de791b0733d4b919802776ed5bfbfbf, type: 3}
-  gaussianShader: {fileID: 4800000, guid: 9d1349666e26db14aa420ad43443005a, type: 3}
-  applyShader: {fileID: 4800000, guid: 8da2563ff7568a745a167cdd0de1efce, type: 3}
-  blurSize: 30
-  blurSigma: 9.67
-  intensity: 1
-  brightDampening: 0.5
