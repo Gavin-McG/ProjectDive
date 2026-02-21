@@ -22,15 +22,20 @@ public class PlayerSpriteMovement : MonoBehaviour
     {
         Vector2 inputMove = moveActionReference.action.ReadValue<Vector2>();
         inputMove.Normalize();
-
-        if (inputMove.x < 0)
-            playerSpriteResolver.SetCategoryAndLabel("Left", "Sprite1");
-        else if (inputMove.x > 0)
-            playerSpriteResolver.SetCategoryAndLabel("Right", "Sprite1");
-        else if (inputMove.y > 0)
-            playerSpriteResolver.SetCategoryAndLabel("Up", "Sprite1");
-        else if (inputMove.y < 0)
-            playerSpriteResolver.SetCategoryAndLabel("Down", "Sprite1");
+        if (Mathf.Abs(inputMove.x) >= Mathf.Abs(inputMove.y) && inputMove.x != 0)
+        {
+            if (inputMove.x < 0)
+                playerSpriteResolver.SetCategoryAndLabel("Left", "Sprite1");
+            else if (inputMove.x > 0)
+                playerSpriteResolver.SetCategoryAndLabel("Right", "Sprite1");
+        }
+        else if (Mathf.Abs(inputMove.x) < Mathf.Abs(inputMove.y))
+        {
+            if (inputMove.y > 0)
+                playerSpriteResolver.SetCategoryAndLabel("Up", "Sprite1");
+            else if (inputMove.y < 0)
+                playerSpriteResolver.SetCategoryAndLabel("Down", "Sprite1");
+        }
         else 
             playerSpriteResolver.SetCategoryAndLabel("Idle", "Sprite1");
     }
