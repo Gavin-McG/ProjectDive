@@ -24,16 +24,8 @@ public class PlayerWalkController : MonoBehaviour
         input.Normalize();
         
         //Get normal for floor underneath player (default to Vector2.up)
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.useLayerMask = true;
-        filter.layerMask = LayerMask.GetMask("Ground");
-        List<RaycastHit2D> hits = new List<RaycastHit2D>();
-        Physics2D.Raycast(transform.position, Vector2.down, filter, hits, 5f);
-        Vector2 upDir = hits.FirstOrDefault().normal;
-        if (upDir == Vector2.zero) upDir = Vector2.up;
 
         //Apply input to player
-        Vector2 walkDir = upDir.Perpendicular1();
-        rb.linearVelocity = input.x * walkSpeed * walkDir;
+        rb.linearVelocity = input.x * walkSpeed * Vector3.right;
     }
 }
