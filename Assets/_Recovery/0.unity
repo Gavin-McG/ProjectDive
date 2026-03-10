@@ -1102,7 +1102,6 @@ GameObject:
   - component: {fileID: 1261354472}
   - component: {fileID: 1261354471}
   - component: {fileID: 1261354473}
-  - component: {fileID: 1261354474}
   m_Layer: 0
   m_Name: DialogueUI
   m_TagString: Untagged
@@ -1160,20 +1159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd04c4678bc9d2c409a33386b3226e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueUI
---- !u!114 &1261354474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261354470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63ad328c868421fb88f846729286077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestDialogue
-  _dialogueAsset: {fileID: -494944264001496498, guid: c73d25f6d714c3643828787f6ab5d74f, type: 3}
-  Begin: 0
 --- !u!1 &1322406130
 GameObject:
   m_ObjectHideFlags: 0

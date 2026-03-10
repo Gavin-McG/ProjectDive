@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Dialogue/UI/Dropdown.uss?fileID=7433441132597879392&amp;guid=9dc4652f56b888440abf5de09cc539b4&amp;type=3#Dropdown"/>
+    <Style src="project://database/Assets/Dialogue/UI/Dialogue.uss?fileID=7433441132597879392&amp;guid=6017bd6ebdd6d9d49b6a1070ce74ed19&amp;type=3#Dialogue"/>
+    <ui:VisualElement name="DialogueHolder" style="flex-grow: 1; justify-content: flex-start; align-self: center; height: 30%; min-height: 30%; max-height: 30%; width: 70%; min-width: 70%; max-width: 70%;">
+        <ui:VisualElement name="DialogueContent" class="closed" style="flex-grow: 1; height: 100%; min-height: 100%; max-height: 100%; max-width: 100%; min-width: 100%; width: 100%; transition-duration: 0.5s; align-items: center; flex-direction: row; align-self: auto;">
+            <ui:Image name="Profile" source="project://database/Assets/Sprites/bubble.png?fileID=21300000&amp;guid=616c78c8408ce58449c5b4372327a952&amp;type=3#bubble" style="align-self: auto; justify-content: flex-start; height: 80%; min-height: 80%; max-height: 80%; aspect-ratio: 1;"/>
+            <ui:VisualElement name="TextContent" style="flex-grow: 1; height: 90%; min-height: 90%; max-height: 90%; background-color: rgba(55, 88, 147, 0.68); border-top-width: 12px; border-right-width: 12px; border-bottom-width: 12px; border-left-width: 12px; border-left-color: rgb(99, 158, 221); border-right-color: rgb(99, 158, 221); border-top-color: rgb(99, 158, 221); border-bottom-color: rgb(99, 158, 221); border-top-left-radius: 36px; border-top-right-radius: 36px; border-bottom-right-radius: 36px; border-bottom-left-radius: 36px; color: rgb(255, 255, 255); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                <ui:Label text="Label" name="Name" enabled="true" style="font-size: 36px; -unity-font-style: bold;"/>
+                <ui:Label text="Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum" name="Text" enabled="true" style="font-size: 36px; height: 80%; -unity-text-auto-size: none; white-space: normal;"/>
+                <ui:Button text="Continue" name="ContinueButton" enabled="true" class="button" style="position: absolute; bottom: 0; right: 0; font-size: 36px; width: 20%; min-width: 20%; max-width: 20%; height: 25%; min-height: 25%; max-height: 25%; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; display: flex;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

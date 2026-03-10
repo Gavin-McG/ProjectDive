@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3840514483581778460}
   - component: {fileID: 2414243375518476923}
+  - component: {fileID: -1010001767430105662}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -48,3 +49,17 @@ MonoBehaviour:
     _serializedList:
     - Key: {fileID: 11400000, guid: d66c78914aa7adc44af241391bf40812, type: 2}
       Value: 3
+--- !u!114 &-1010001767430105662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893706559784612358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609617bfd5c54d0a82b922dd2fae3f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManagerProvider
+  managers:
+  - {fileID: 2414243375518476923}

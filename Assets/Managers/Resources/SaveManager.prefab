@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 364157272518154353}
   - component: {fileID: 5693582717899890833}
+  - component: {fileID: 1937544105175386508}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -47,3 +48,17 @@ MonoBehaviour:
   IsPrimary: 1
   managerID: 
   settings: {fileID: 11400000, guid: 25ed29a87ed11714580be74f844172a2, type: 2}
+--- !u!114 &1937544105175386508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429126448574588695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609617bfd5c54d0a82b922dd2fae3f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ManagerProvider
+  managers:
+  - {fileID: 5693582717899890833}
