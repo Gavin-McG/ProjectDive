@@ -9,7 +9,8 @@ public class PlayerSwimController : MonoBehaviour
     [SerializeField] float swimForce = 1.5f;
     [SerializeField] private float directionalFactor = 1.5f;
 
-    private Rigidbody2D rb;
+    public bool canSwim = true;
+    public Rigidbody2D rb;
 
     private void OnEnable()
     {
@@ -18,14 +19,18 @@ public class PlayerSwimController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 input = moveActionReference.action.ReadValue<Vector2>();
-        input.Normalize();
-        
-        Vector2 inputForce = swimForce * input.normalized;
-        if (Vector2.Dot(inputForce, rb.linearVelocity) < 0)
+        if (canSwim)
         {
-            inputForce *= directionalFactor;
+            Vector2 input = moveActionReference.action.ReadValue<Vector2>();
+            input.Normalize();
+
+            Vector2 inputForce = swimForce * input.normalized;
+            if (Vector2.Dot(inputForce, rb.linearVelocity) < 0)
+            {
+                inputForce *= directionalFactor;
+            }
+
+            rb.AddForce(inputForce, ForceMode2D.Force);
         }
-        rb.AddForce(inputForce, ForceMode2D.Force);
     }
 }

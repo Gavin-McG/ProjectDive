@@ -13,7 +13,7 @@ public class PlayerDashController : MonoBehaviour
     
 
     private Rigidbody2D rb;
-    private bool canDash;
+    public bool canDash;
     private float timeDuration;
     private Vector2 lastInputMove;
 
