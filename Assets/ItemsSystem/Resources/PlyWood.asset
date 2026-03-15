@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9b9af100176f841aebec0167fbaeba, type: 3}
   m_Name: PlyWood
   m_EditorClassIdentifier: Assembly-CSharp::Resource
-  materialName: Plywood
+  displayName: Plywood
   icon: {fileID: -2290196265563507890, guid: 8983f42f2f14aa74598b122a0e81cfb5, type: 3}
   rarity: 0
   defaultCount: 2
