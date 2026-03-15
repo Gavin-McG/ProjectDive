@@ -1,52 +1,31 @@
+using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyChaserManager : MonoBehaviour
 {
-    [SerializeField] Transform playerTransform;
-    [SerializeField] float chaseTriggerRadius = 5.0f;
-    [SerializeField] float chaseRadius = 10.0f;
-    bool neutralPhase = false;
-    bool chasePlayerPhase = false;
-    bool damagePhase = false;
-    bool idlePhase = true;
-    bool idling = false;
+    [SerializeField] protected Transform playerTransform;
+    [SerializeField] protected float chaseTriggerRadius = 5.0f;
+    [SerializeField] protected float chaseRadius = 10.0f;
+    protected bool neutralPhase = false;
+    protected bool chasePlayerPhase = false;
+    protected bool damagePhase = false;
+    protected bool idlePhase = true;
+    protected bool idling = false;
+    public bool attackPhase = false;
+    protected bool attacking = false;
+    protected NavMeshAgent agent;
+    
+    protected EnemyFollowsPlayer enemyFollows;
+    protected EnemyFollowsPath enemyPathing;
+    protected EnemyAttacksPlayer enemyAttacking;
 
-    EnemyTriggersPhase enemyTriggers;
-    EnemyFollowsPlayer enemyFollows;
-    EnemyFollowsPath enemyPathing;
-
-    void Start()
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        enemyTriggers = GetComponent<EnemyTriggersPhase>();
-        enemyFollows = GetComponent<EnemyFollowsPlayer>();
-        // enemyIdle = GetComponent<EnemyIdleInPlace>();
-        enemyPathing = GetComponent<EnemyFollowsPath>();
-    }
-
-    void Update()
-    {
-        if (!chasePlayerPhase && enemyTriggers.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseTriggerRadius))
+        if (other.CompareTag("Player") && !attackPhase)
         {
-            chasePlayerPhase = true;
-            idlePhase = false;
-            idling = false;
-            enemyFollows.ToggleChasePlayer(true);
-            enemyPathing.ToggleFollowPath(false);
-            // enemyIdle.ToggleIdling(false);
-        }
-        else if (chasePlayerPhase &&
-                 !enemyTriggers.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
-        {
-            chasePlayerPhase = false;
-            idlePhase = true;
-            enemyFollows.ToggleChasePlayer(false);
-            // enemyIdle.ToggleIdling(false);
-        }
-        else if (idlePhase && !idling)
-        {
-            idling = true;
-            enemyPathing.ToggleFollowPath(true);
+            attackPhase = true;
         }
     }
 }
