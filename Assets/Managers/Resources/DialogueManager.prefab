@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4989463267470133625}
   - component: {fileID: 6444255486800064798}
   - component: {fileID: -6849055153763816276}
+  - component: {fileID: -2613193643837053097}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ManagerProvider
   managers:
   - {fileID: 4989463267470133625}
+--- !u!114 &-2613193643837053097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580458832711559129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caf12ff3f21441419580f5da65ea11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemEventReciever
+  itemEvent: {fileID: 11400000, guid: 549bace2680f70543871a5fdabe861ad, type: 2}

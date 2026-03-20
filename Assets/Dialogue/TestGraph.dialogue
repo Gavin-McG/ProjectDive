@@ -602,5 +602,5 @@ MonoBehaviour:
         m_Value:
           value:
             items:
-            - itemSo: {fileID: 0}
-              count: 0
+            - itemSo: {fileID: 11400000, guid: d66c78914aa7adc44af241391bf40812, type: 2}
+              count: 5
