@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnManagerObjects
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void SpawnManagers()
     {
         var managerSOs = Resources.LoadAll<ManagerObject>("");

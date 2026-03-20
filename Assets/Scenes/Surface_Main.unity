@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 673861315}
   - component: {fileID: 673861314}
   - component: {fileID: 673861316}
+  - component: {fileID: 673861317}
   m_Layer: 3
   m_Name: SurfacePlayer
   m_TagString: Untagged
@@ -381,6 +382,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWalkController
   moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   walkSpeed: 5
+--- !u!114 &673861317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673861311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7614ffbf2a2a6f94a84251c3af7638ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableBehaviorsOnDialogue
+  behaviors:
+  - {fileID: 673861316}
 --- !u!1 &721607890
 GameObject:
   m_ObjectHideFlags: 0

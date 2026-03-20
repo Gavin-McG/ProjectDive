@@ -51,9 +51,9 @@ MonoBehaviour:
         m_LastKnownBounds:
           serializedVersion: 2
           x: 171
-          y: -345
+          y: -216
           width: 1693
-          height: 407
+          height: 278
         m_GraphElementMetaData:
         - m_Guid:
             m_Value0: 6150529647084116902
@@ -313,7 +313,7 @@ MonoBehaviour:
           serializedVersion: 2
           Hash: 62a2839b59fd2e138bd0021f5f0a39a3
         m_Version: 2
-        m_Position: {x: 724.5127, y: -345.16922}
+        m_Position: {x: 710.5997, y: -216.47357}
         m_Title: 
         m_Tooltip: 
         m_NodePreviewModel:
@@ -602,9 +602,5 @@ MonoBehaviour:
         m_Value:
           value:
             items:
-            - itemSo: {fileID: 0}
-              count: 0
-            - itemSo: {fileID: 0}
-              count: 0
             - itemSo: {fileID: 0}
               count: 0

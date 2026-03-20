@@ -19,6 +19,9 @@ public class DialogueUI : MonoBehaviour
 
     private void OnEnable()
     {
+        dialogueManager = Managers.Get<DialogueManager>();
+        dialogueManager.StartedDialogue.AddListener(DialogueBegan);
+        
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
         
@@ -33,13 +36,8 @@ public class DialogueUI : MonoBehaviour
 
     private void OnDisable()
     {
+        dialogueManager.StartedDialogue.RemoveListener(DialogueBegan);
         continueButton.clicked -= ContinuePressed;
-    }
-
-    private void Start()
-    {
-        dialogueManager = Managers.Get<DialogueManager>();
-        dialogueManager.StartedDialogue.AddListener(DialogueBegan);
     }
 
     private void OpenDialoguePanel()
