@@ -12,14 +12,14 @@ public class DisableBehaviorsOnDialogue : MonoBehaviour
     private void OnEnable()
     {
         dialogueManager = Managers.Get<DialogueManager>();
-        dialogueManager.StartedDialogue.AddListener(DisableBehaviors);
-        dialogueManager.EndedDialogue.AddListener(EnableBehaviors);
+        dialogueManager?.StartedDialogue.AddListener(DisableBehaviors);
+        dialogueManager?.EndedDialogue.AddListener(EnableBehaviors);
     }
 
     private void OnDisable()
     {
-        dialogueManager.StartedDialogue.RemoveListener(DisableBehaviors);
-        dialogueManager.EndedDialogue.RemoveListener(EnableBehaviors);
+        dialogueManager?.StartedDialogue.RemoveListener(DisableBehaviors);
+        dialogueManager?.EndedDialogue.RemoveListener(EnableBehaviors);
     }
 
     private void DisableBehaviors()

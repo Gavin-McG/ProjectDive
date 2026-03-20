@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
-        <ui:Label text="Collect" style="font-size: 32px; -unity-text-align: middle-left; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-text-outline-width: 0; -unity-text-outline-color: rgb(255, 255, 255);"/>
+        <ui:Label text="Interact" style="font-size: 32px; -unity-text-align: middle-left; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-text-outline-width: 0; -unity-text-outline-color: rgb(255, 255, 255);"/>
         <ui:Image source="project://database/Assets/Sprites/ControlIndicators.png?fileID=-1214358608555718208&amp;guid=ee0981136b85c7447b1277bc4f9cc63a&amp;type=3#ControlIndicators_0"/>
     </ui:VisualElement>
 </ui:UXML>

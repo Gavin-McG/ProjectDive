@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -15,6 +16,11 @@ public class PlayerWalkController : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnDisable()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 
     private void FixedUpdate()
