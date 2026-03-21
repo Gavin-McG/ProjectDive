@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ItemCollectible : TriggerInteraction
+public class ItemCollectible : InteractTriggerBehavior
 {
     [SerializeField] private ItemSet itemSet;
     

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using WolverineSoft.DialogueSystem;
 
-public class DialogueInteract : TriggerInteraction
+public class DialogueInteract : InteractTriggerBehavior
 {
     [SerializeField] DialogueAsset asset;
     [SerializeField] private string startPoint;

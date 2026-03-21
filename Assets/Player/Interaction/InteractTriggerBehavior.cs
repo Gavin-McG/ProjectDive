@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class TriggerInteraction : InteractBehavior
+public abstract class InteractTriggerBehavior : InteractBehavior
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
