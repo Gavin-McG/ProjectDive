@@ -1,0 +1,18 @@
+:root {
+}
+
+.closed {
+    top: -100%;
+    transition-duration: 0.5s;
+    position: relative;
+}
+
+
+
+
+
+.open {
+    top: 0%;
+    transition-duration: 0.5s;
+    position: relative;
+}

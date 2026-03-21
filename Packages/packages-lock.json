@@ -142,6 +142,15 @@
       "source": "builtin",
       "dependencies": {}
     },
+    "com.unity.graphtoolkit": {
+      "version": "0.4.0-exp.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ide.rider": {
       "version": "3.0.38",
       "depth": 0,
@@ -296,6 +305,16 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.wolverinesoft.dialoguesystem": {
+      "version": "https://github.com/Gavin-McG/DialogueSystem.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.graphtoolkit": "0.4.0-exp.2",
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "7a35d5e729f45b247f8a1db8715469770bf0448a"
     },
     "com.wolverinesoft.savesystem": {
       "version": "https://github.com/Gavin-McG/SaveSystem.git",
