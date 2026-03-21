@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{f806f134-7fb9-4372-b38d-1900903ecd74}">
+	<object class="AudioFile" id="{3a368d5c-13a5-46ed-87e5-4273d9abb460}">
 		<property name="assetPath">
-			<value>Audio/Ambiance/BubbleAmbiance.wav</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>SFX/ItemCollect.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<property name="length">
-			<value>15.593741496598639</value>
+			<value>0.17514739229024942</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{40bd467d-0d93-46e2-8575-ff5f0caffcb2}</destination>

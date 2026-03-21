@@ -473,12 +473,14 @@ GameObject:
   - component: {fileID: 857678077}
   - component: {fileID: 857678076}
   - component: {fileID: 857678075}
-  - component: {fileID: 857678078}
+  - component: {fileID: 857678082}
   - component: {fileID: 857678074}
   - component: {fileID: 857678079}
   - component: {fileID: 857678080}
+  - component: {fileID: 857678081}
+  - component: {fileID: 857678083}
   m_Layer: 0
-  m_Name: SampleEnemy
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +518,7 @@ NavMeshAgent:
   m_AngularSpeed: 60
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0.5
@@ -596,21 +598,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1194056293}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &857678078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857678073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945d16ed3ff2a4c3591be11e0ba53c04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChaserManager
-  playerTransform: {fileID: 1587157766}
-  chaseTriggerRadius: 5
-  chaseRadius: 7
 --- !u!114 &857678079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +628,77 @@ MonoBehaviour:
   - {fileID: 1564268470}
   pathSpeed: 1
   pathAccleration: 3
+--- !u!58 &857678081
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857678073}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &857678082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857678073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c973b6790ae42a3b527f52db02f167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHoundSharkManager
+  playerTransform: {fileID: 1587157766}
+  chaseTriggerRadius: 5
+  chaseRadius: 7
+  attackPhase: 0
+--- !u!114 &857678083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857678073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf073c2de05c4acd958d3b6ac965b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  enemyManager: {fileID: 857678082}
+  playerDashController: {fileID: 1587157768}
+  playerSwimController: {fileID: 1587157767}
+  attackTimer: 1
+  attackDuration: 0
+  releaseTimer: 1
+  releaseDistance: 2
 --- !u!1 &891696765
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1194056293}
   m_Layer: 0
-  m_Name: Shark
+  m_Name: HoundShark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7220,9 +7278,10 @@ GameObject:
   - component: {fileID: 1587157770}
   - component: {fileID: 1587157769}
   - component: {fileID: 1587157771}
+  - component: {fileID: 1587157772}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7339,7 +7398,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8896681466560373582, guid: 779589df934754a5c9bf2750465a6b34, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: 18f7f69cb4f934158a5ecbc5f2e2d7b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7381,6 +7440,8 @@ MonoBehaviour:
   moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   swimForce: 30
   directionalFactor: 3
+  canSwim: 1
+  rb: {fileID: 0}
 --- !u!114 &1587157768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7397,6 +7458,7 @@ MonoBehaviour:
   dashActionReference: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashForce: 500
   timeCooldown: 2
+  canDash: 0
 --- !u!114 &1587157769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7423,10 +7485,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 0.009161512
+  m_labelHash: 3.7630192e-22
   m_SpriteKey: 0
-  m_SpriteHash: 466970786
+  m_SpriteHash: 565495122
 --- !u!114 &1587157771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7440,6 +7502,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpriteMovement
   moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!58 &1587157772
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587157762}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.25
 --- !u!1 &1674961659
 GameObject:
   m_ObjectHideFlags: 0

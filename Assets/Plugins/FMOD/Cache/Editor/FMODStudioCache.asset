@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639085956330507891
+  lastModified: 639091751745069134
   FileSizes:
   - Name: Desktop
-    Value: 824
+    Value: 860
   Exists: 1
+--- !u!114 &-2636715600690866284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Music
+  Guid:
+    Data1: -439162539
+    Data2: 1218681883
+    Data3: 1452099972
+    Data4: -1855998027
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 38500
 --- !u!114 &-2403137964843222959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,10 +62,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639085956330366401
+  lastModified: 639091751745046691
   FileSizes:
   - Name: Desktop
-    Value: 226944
+    Value: 454272
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -58,18 +85,21 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 3634921479466241015}
   - {fileID: 162706931932664281}
+  - {fileID: -2636715600690866284}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2403137964843222959}
   StringsBanks:
   - {fileID: -6927792410665666560}
   cacheVersion: 131858
-  cacheTime: 639085956330507891
+  cacheTime: 639091751745069134
   SerializableEventsDict:
   - key: event:/Ambiance
     index: 0
   - key: event:/Item Collect
     index: 1
+  - key: event:/Music
+    index: 2
 --- !u!114 &162706931932664281
 MonoBehaviour:
   m_ObjectHideFlags: 0

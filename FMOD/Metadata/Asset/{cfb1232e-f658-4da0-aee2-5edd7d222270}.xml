@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="DataFile" id="{ebe2931f-35ee-4d10-8099-97bd31626a24}">
+	<object class="EncodableAsset" id="{cfb1232e-f658-4da0-aee2-5edd7d222270}">
 		<property name="assetPath">
-			<value>Audio/Prefabs/AmbianceEmitter.prefab.meta</value>
+			<value>Ambiance/</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{40bd467d-0d93-46e2-8575-ff5f0caffcb2}</destination>
