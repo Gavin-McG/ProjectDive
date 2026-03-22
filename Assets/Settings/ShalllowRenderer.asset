@@ -116,14 +116,14 @@ MonoBehaviour:
   verticalResolution: 120
   showInScene: 0
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  backgroundIntensity: 2.9
+  backgroundIntensity: 2
   lightLayers:
   - layerName: BackWall
     active: 1
     layerMask:
       serializedVersion: 2
       m_Bits: 536870912
-    color: {r: 0.027634388, g: 0.15718746, b: 0.21698111, a: 0}
+    color: {r: 0.0129049495, g: 0.06889128, b: 0.09433961, a: 0}
     intensity: 0
     mode: 1
   - layerName: Lights

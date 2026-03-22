@@ -6,37 +6,47 @@ using UnityEngine.U2D.Animation;
 public class PlayerSpriteMovement : MonoBehaviour
 {
     [SerializeField] InputActionReference moveActionReference;
-    
+    [SerializeField] float swimAnimSpeedMoving = 0.15f;
+    [SerializeField] float swimAnimSpeedIdle = 0.4f;
+
     private Rigidbody2D rb;
     private SpriteResolver playerSpriteResolver;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private string currentDirection = "Right";
+    private float animTimer = 0f;
+    private int animFrame = 0;
+    private readonly string[] labels = { "1", "2", "3", "4" };
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerSpriteResolver = GetComponent<SpriteResolver>();
-
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         Vector2 inputMove = moveActionReference.action.ReadValue<Vector2>();
         inputMove.Normalize();
-        if (Mathf.Abs(inputMove.x) >= Mathf.Abs(inputMove.y) && inputMove.x != 0)
+
+        // Only change direction if moving left/right
+        if (inputMove.x < 0)
+            currentDirection = "Left";
+        else if (inputMove.x > 0)
+            currentDirection = "Right";
+
+        bool isMoving = inputMove.magnitude > 0.01f;
+
+        // Animation timing
+        float animSpeed = isMoving ? swimAnimSpeedMoving : swimAnimSpeedIdle;
+        animTimer += Time.fixedDeltaTime;
+
+        if (animTimer >= animSpeed)
         {
-            if (inputMove.x < 0)
-                playerSpriteResolver.SetCategoryAndLabel("Left", "Sprite1");
-            else if (inputMove.x > 0)
-                playerSpriteResolver.SetCategoryAndLabel("Right", "Sprite1");
+            animTimer = 0f;
+            animFrame = (animFrame + 1) % labels.Length;
         }
-        else if (Mathf.Abs(inputMove.x) < Mathf.Abs(inputMove.y))
-        {
-            if (inputMove.y > 0)
-                playerSpriteResolver.SetCategoryAndLabel("Up", "Sprite1");
-            else if (inputMove.y < 0)
-                playerSpriteResolver.SetCategoryAndLabel("Down", "Sprite1");
-        }
-        else 
-            playerSpriteResolver.SetCategoryAndLabel("Idle", "Sprite1");
+
+        // Apply sprite
+        playerSpriteResolver.SetCategoryAndLabel(currentDirection, labels[animFrame]);
     }
 }
