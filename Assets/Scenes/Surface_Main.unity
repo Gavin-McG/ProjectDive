@@ -132,8 +132,9 @@ GameObject:
   - component: {fileID: 12536937}
   - component: {fileID: 12536934}
   - component: {fileID: 12536938}
+  - component: {fileID: 12536939}
   m_Layer: 0
-  m_Name: TestNPC
+  m_Name: Horace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173f4cfa2a1e86e47bb7c36c87a38003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueInteract
-  asset: {fileID: -494944264001496498, guid: c73d25f6d714c3643828787f6ab5d74f, type: 3}
+  asset: {fileID: -494944264001496498, guid: c7799e05f88da55449786f5361260d4d, type: 3}
   startPoint: 
 --- !u!212 &12536935
 SpriteRenderer:
@@ -202,8 +203,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.4918583, b: 0, a: 1}
+  m_Sprite: {fileID: 6213742086722964374, guid: 980f14ec2f0466640b267014ca7c3a9b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -222,7 +223,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.48, y: 0.62073, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -265,7 +266,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.125, y: 2.40625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -287,6 +288,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisableBehaviorsOnDialogue
   behaviors:
   - {fileID: 12536934}
+--- !u!114 &12536939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12536933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c5aaf851965614390d68f4d2dc6c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 673861319}
+  threshold: 0.5
 --- !u!1 &33544836
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +396,11 @@ Transform:
 --- !u!1 &673861311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6939304830555016906, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
+  m_PrefabInstance: {fileID: 7416285494657611664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &673861319 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 878827702576349506, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
   m_PrefabInstance: {fileID: 7416285494657611664}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &721607890
@@ -538,7 +558,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6485,9 +6505,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3930429474996878768, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
+      propertyPath: walkSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6939304830555016906, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
       propertyPath: m_Name
       value: Player_Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610264162086652280, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
+      propertyPath: m_labelHash
+      value: 1.2985474e-36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610264162086652280, guid: 6240afedfd74e2c479cc5a33c60e6263, type: 3}
+      propertyPath: m_CategoryHash
+      value: 4.41058e-23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

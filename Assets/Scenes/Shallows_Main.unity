@@ -1441,6 +1441,14 @@ PrefabInstance:
       propertyPath: tankCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9110369443842368408, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
+      propertyPath: deathScene
+      value: 
+      objectReference: {fileID: 102900000, guid: 89887ec8d215a134fa8733e3f3487a67, type: 3}
+    - target: {fileID: 9110369443842368408, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
+      propertyPath: removeRate
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

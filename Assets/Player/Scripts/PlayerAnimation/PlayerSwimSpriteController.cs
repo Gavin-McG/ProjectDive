@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D.Animation;
 
-public class PlayerSpriteMovement : MonoBehaviour
+public class PlayerSwimSpriteController : MonoBehaviour
 {
     [SerializeField] InputActionReference moveActionReference;
     [SerializeField] float swimAnimSpeedMoving = 0.15f;

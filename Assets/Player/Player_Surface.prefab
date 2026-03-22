@@ -10,10 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 878827702576349506}
   - component: {fileID: 3239834079432359076}
+  - component: {fileID: 8610264162086652280}
+  - component: {fileID: 1679600434817504651}
   - component: {fileID: 1631402432861386841}
   - component: {fileID: 2133865067980996082}
   - component: {fileID: 3930429474996878768}
   - component: {fileID: 762993442398699123}
+  - component: {fileID: 8236295330061559569}
   m_Layer: 3
   m_Name: Player_Surface
   m_TagString: Untagged
@@ -86,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -4975818633914977625, guid: abae56d060e880c4b86508825e0808da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,6 +99,36 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8610264162086652280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939304830555016906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
+  m_CategoryHash: 4.41058e-23
+  m_labelHash: 1.2985474e-36
+  m_SpriteKey: 0
+  m_SpriteHash: 969063035
+--- !u!114 &1679600434817504651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939304830555016906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: c56506304d28594439367a1f6e74dd15, type: 3}
 --- !u!50 &1631402432861386841
 Rigidbody2D:
   serializedVersion: 5
@@ -187,6 +220,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisableBehaviorsOnDialogue
   behaviors:
   - {fileID: 3930429474996878768}
+--- !u!114 &8236295330061559569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939304830555016906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7f84c04cc7ebe42b6c5d2baaf35128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWalkSpriteController
+  moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  walkAnimSpeedMoving: 0.2
 --- !u!1001 &5191618061299726670
 PrefabInstance:
   m_ObjectHideFlags: 0

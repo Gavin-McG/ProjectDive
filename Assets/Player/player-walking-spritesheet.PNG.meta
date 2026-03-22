@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,15 +121,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-walking-spritesheet_0
+      name: walk-left-1
       rect:
         serializedVersion: 2
         x: 10
-        y: 33
-        width: 13
-        height: 34
+        y: 34
+        width: 14
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -143,15 +143,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_1
+      name: walk-right-1
       rect:
         serializedVersion: 2
-        x: 10
+        x: 9
         y: 0
-        width: 13
+        width: 14
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,15 +165,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_2
+      name: walk-left-2
       rect:
         serializedVersion: 2
         x: 41
-        y: 33
-        width: 13
-        height: 32
+        y: 34
+        width: 14
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,15 +187,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_3
+      name: walk-left-3
       rect:
         serializedVersion: 2
-        x: 74
-        y: 33
-        width: 13
-        height: 34
+        x: 75
+        y: 34
+        width: 14
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,15 +209,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_4
+      name: walk-right-3
       rect:
         serializedVersion: 2
-        x: 74
+        x: 73
         y: 0
-        width: 13
+        width: 14
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,15 +231,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_5
+      name: walk-left-4
       rect:
         serializedVersion: 2
         x: 105
-        y: 33
+        y: 34
         width: 14
-        height: 32
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,15 +253,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_6
+      name: walk-right-2
       rect:
         serializedVersion: 2
-        x: 43
+        x: 42
         y: 0
-        width: 13
-        height: 31
+        width: 14
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,15 +275,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-walking-spritesheet_7
+      name: walk-right-4
       rect:
         serializedVersion: 2
         x: 106
         y: 0
         width: 14
-        height: 31
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9bab5b3a7e6b17441a942cd16c23b5f9
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player-walking-spritesheet_0: -4975818633914977625
-      player-walking-spritesheet_1: -1374552163937766647
-      player-walking-spritesheet_2: -112890428226759941
-      player-walking-spritesheet_3: 1123301489066859272
-      player-walking-spritesheet_4: 8580909822515025159
-      player-walking-spritesheet_5: -1839924557721092561
-      player-walking-spritesheet_6: -2871732674225534690
-      player-walking-spritesheet_7: 3740194643794709510
+      walk-left-1: -4975818633914977625
+      walk-left-2: -112890428226759941
+      walk-left-3: 1123301489066859272
+      walk-left-4: -1839924557721092561
+      walk-right-1: -1374552163937766647
+      walk-right-2: -2871732674225534690
+      walk-right-3: 8580909822515025159
+      walk-right-4: 3740194643794709510
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
