@@ -393,6 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721607891}
   - component: {fileID: 721607892}
+  - component: {fileID: 721607893}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -461,6 +462,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &721607893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721607890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b641359282a2fea4e8d65549157d6966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneOnInteract
+  targetScene: {fileID: 102900000, guid: bc2e0eddaa90834488dc99a0bab76390, type: 3}
 --- !u!1 &747075157
 GameObject:
   m_ObjectHideFlags: 0
