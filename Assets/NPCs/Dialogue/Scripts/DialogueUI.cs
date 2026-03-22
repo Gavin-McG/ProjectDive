@@ -10,7 +10,7 @@ public class DialogueUI : MonoBehaviour
     DialogueManager dialogueManager;
     
     private VisualElement dialogueContents;
-    private VisualElement profile;
+    private Image profile;
     private Label nameText;
     private Label text;
     private Button continueButton;
@@ -26,7 +26,7 @@ public class DialogueUI : MonoBehaviour
         VisualElement root = document.rootVisualElement;
         
         dialogueContents = root.Q("DialogueContent");
-        profile = root.Q("Profile");
+        profile = root.Q<Image>("Profile");
         nameText = root.Q<Label>("Name");
         text = root.Q<Label>("Text");
         continueButton = root.Q<Button>("ContinueButton");
@@ -118,5 +118,13 @@ public class DialogueUI : MonoBehaviour
         }
         
         StartCoroutine(SetPanelText(info.text, 0.5f, 0.05f));
+        
+        //Set profile
+        ProfileParams profileInfo = info.GetTextParams<ProfileParams>();
+        if (profile != null)
+        {
+            nameText.text = profileInfo.name;
+            profile.sprite = profileInfo.profile;
+        }
     }
 }
