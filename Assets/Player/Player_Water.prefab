@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 9202889368634749359}
   - component: {fileID: 5081587399386992573}
   - component: {fileID: 8976776205857433979}
+  - component: {fileID: 9110369443842368408}
   m_Layer: 0
   m_Name: Player_Water
   m_TagString: Untagged
@@ -299,6 +300,8 @@ MonoBehaviour:
   moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   swimForce: 30
   directionalFactor: 3
+  canSwim: 1
+  rb: {fileID: 0}
 --- !u!114 &5081587399386992573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +318,7 @@ MonoBehaviour:
   dashActionReference: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashForce: 500
   timeCooldown: 2
+  canDash: 0
 --- !u!114 &8976776205857433979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +332,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpriteMovement
   moveActionReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &9110369443842368408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677579141774798967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e6d8286422aab448e0ca8ab76ef3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  tankCount: 2
+  health: 1.5
 --- !u!1001 &5589563185362148557
 PrefabInstance:
   m_ObjectHideFlags: 0
