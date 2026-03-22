@@ -25,6 +25,8 @@ public class EnemyHoundSharkManager : EnemyChaserManager
         else if (!attackPhase && attacking)
         {
             attacking = false;
+            idlePhase = true;
+            idling = false;
         }
         else if (!chasePlayerPhase && EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseTriggerRadius) && !attackPhase)
         {
