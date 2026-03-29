@@ -4,59 +4,151 @@ using UnityEngine.AI;
 public class EnemyLeatherbackAttack : MonoBehaviour
 {
     Transform playerTransform;
+    Vector2 playerPosition;
     NavMeshAgent agent;
+    EnemyLeatherbackManager enemyLeatherbackManager;
+    Rigidbody2D rb;
 
     [SerializeField] float searchRadius = 50;
     bool attacking = false;
+    bool settingup = false;
 
-    [Header("Crush Attack Acceleration and Speed")]
-    [SerializeField] private float crushDuration = 3.0f;
-    // [SerializeField] private float crushSpeed = 8.0f;
+    [Header("Attack Position")] 
+    [SerializeField] private float distanceFromPlayerForAttack = 2.0f;
+    Vector2 attackPosition;
+
+    [Header("Chargeing up Attack")] 
+    [SerializeField] float chargeDuration = 1.5f;
+    float chargeTimer = 0.0f;
+    bool charging = false;
+
+    [Header("Crush Duration and Cooldown")]
+    [SerializeField] float crushDuration = 3.0f;
+    [SerializeField] float crushCooldown = 5.0f;
     float crushTimer = 0.0f;
+    
     [SerializeField] AnimationCurve curve;
 
-    private Vector2 nearestWallPoint;
+    [Header("Crush liftoff")] 
+    [SerializeField] float crushLiftoffForce = 100.0f;
+    [SerializeField] float crushLiftoffTime = 1.5f;
+    private bool liftoff = false;
+    
 
-    Transform initTransform;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Vector2 nearestWallPoint;
+    Vector2 initPosition;
+    Vector2 crushDirection;
+
+    //Debugging
+    // public bool TriggerAttack = false;
+    
     void Start()
     {
         if (playerTransform == null)
+        {
             playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+        playerPosition = playerTransform.position;
+        
         if (agent == null) agent = GetComponent<NavMeshAgent>();
+
+        if (enemyLeatherbackManager == null)
+        {
+            enemyLeatherbackManager = GetComponent<EnemyLeatherbackManager>();
+        }
+
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        crushTimer = crushDuration;
+        chargeTimer = chargeDuration;
 
         //TEMPORARY
         // agent.acceleration = crushAcceleration;
         // agent.speed = crushSpeed;
-        initTransform = transform;
-        crushTimer = 0.0f;
-        
-        nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
+        // initPosition = transform.position;
+        // crushTimer = 0.0f;
+        // nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Vector2 nearestWallPoint= EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
-        // if (nearestWallPointBool.HasValue)
-        // {
-        //     Vector2 nearestWallPoint = nearestWallPointBool.Value;
-        //     Debug.Log(nearestWallPoint);
-        //     agent.SetDestination(nearestWallPoint);
-        //     agent.nextPosition = new Vector3(agent.nextPosition.x, agent.nextPosition.y, agent.nextPosition.z);
-        // }
-
-        if (crushTimer < crushDuration)
+        if (!charging && !attacking && settingup)
+        {
+            if (EnemyTriggersPhase.IsEnemyInRangeOfPlayer(attackPosition, initPosition, 0.01f)) {
+                charging = true;
+                agent.isStopped = true;
+                settingup = false;
+            }
+            else
+            {
+                initPosition = transform.position;
+                nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
+                crushDirection = nearestWallPoint - initPosition;
+                crushDirection.Normalize();
+                attackPosition = -crushDirection * distanceFromPlayerForAttack + new Vector2(playerTransform.position.x, playerTransform.position.y);
+                agent.SetDestination(attackPosition);
+            }
+        }
+        if (charging && !attacking && chargeTimer < chargeDuration)
+        {
+            initPosition = transform.position;
+            nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
+            crushDirection = nearestWallPoint - initPosition;
+            crushDirection.Normalize();
+            chargeTimer += Time.deltaTime;
+        }
+        else if (charging && !attacking && chargeTimer >= chargeDuration)
+        {
+            charging = false;
+            attacking = true;
+        }
+        
+        if (!charging && attacking && crushTimer < crushDuration)
         {
             crushTimer += Time.deltaTime;
             float value = curve.Evaluate(crushTimer / crushDuration);
-            transform.position = Vector3.Lerp(initTransform.position, nearestWallPoint, value);
+            rb.position = Vector3.Lerp(initPosition, nearestWallPoint, value);
             // transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
+        }
+
+        if (crushTimer >= crushDuration)
+        {
+            crushTimer += Time.deltaTime;
+            if (!liftoff && crushTimer >= crushLiftoffTime + crushDuration)
+            {
+                rb.AddForce(-crushDirection * crushLiftoffForce);
+                liftoff = true;
+            }
+        }
+
+        if (crushTimer >= crushDuration + crushCooldown)
+        {
+            enemyLeatherbackManager.ToggleAttackPhase(false);
+            enemyLeatherbackManager.ToggleIdlePhase(true);
+            agent.isStopped = false;
         }
     }
 
     public void TriggerLeatherbackAttack()
     {
-        attacking = true;
+        initPosition = transform.position;
+        crushTimer = 0.0f;
+        chargeTimer = 0.0f;
+        playerPosition = playerTransform.position;
+        nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
+        crushDirection = nearestWallPoint - initPosition;
+        crushDirection.Normalize();
+        liftoff = false;
+        attacking = false;
+        settingup = true;
+        // charging = true;
+
+        attackPosition = -crushDirection * distanceFromPlayerForAttack + playerPosition;
+        agent.isStopped = false;
+        agent.SetDestination(attackPosition);
     }
 }

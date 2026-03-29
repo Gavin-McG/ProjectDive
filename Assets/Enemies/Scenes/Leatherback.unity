@@ -7404,7 +7404,7 @@ Transform:
   m_GameObject: {fileID: 1674961659}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.32709, y: 0.10744, z: 0}
+  m_LocalPosition: {x: -16.28, y: 3.99, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8786,6 +8786,7 @@ GameObject:
   - component: {fileID: 1992723550}
   - component: {fileID: 1992723549}
   - component: {fileID: 1992723551}
+  - component: {fileID: 1992723552}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -8802,7 +8803,7 @@ Transform:
   m_GameObject: {fileID: 1992723544}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.37, y: -2.96, z: 0}
+  m_LocalPosition: {x: 3.65, y: -1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8851,10 +8852,10 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992723544}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -8938,40 +8939,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   searchRadius: 10000
-  crushDuration: 10
+  distanceFromPlayerForAttack: 2
+  chargeDuration: 1.5
+  crushDuration: 0.5
+  crushCooldown: 5
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 0.011417884
+      outSlope: 0.011417884
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2686959
-      value: -0.23810326
-      inSlope: 1.9533851
-      outSlope: 1.9533851
+      time: 0.4985153
+      value: 0.0056919903
+      inSlope: 0.071422756
+      outSlope: 0.071422756
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.09659805
+      outWeight: 0.044742152
+    - serializedVersion: 3
+      time: 0.60238016
+      value: 0.08682638
+      inSlope: 2.174126
+      outSlope: 2.174126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23763904
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 2.2965996
+      outSlope: 2.2965996
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  crushLiftoffForce: 10
+  crushLiftoffTime: 1.5
 --- !u!114 &1992723550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8985,7 +9000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   playerTransform: {fileID: 870513644}
-  attackRadius: 10
+  attackRadius: 5
+  chaseRadius: 10
 --- !u!50 &1992723551
 Rigidbody2D:
   serializedVersion: 5
@@ -9013,6 +9029,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1992723552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992723544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e6a4d0b60f440cba64e60df769578a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyFollowsPlayer
+  player: {fileID: 870513633}
+  enemyChaseSpeed: 3
+  enemyChaseAcceleration: 8
+  chasePlayer: 0
 --- !u!1 &2065552439
 GameObject:
   m_ObjectHideFlags: 0

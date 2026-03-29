@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyFollowsPlayer : MonoBehaviour
 {
+    static bool playerBeingChased = false;
+    
     [SerializeField] private GameObject player;
     [SerializeField] private float enemyChaseSpeed;
     [SerializeField] private float enemyChaseAcceleration;
@@ -18,6 +20,11 @@ public class EnemyFollowsPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +44,7 @@ public class EnemyFollowsPlayer : MonoBehaviour
 
     public void ToggleChasePlayer(bool willChasePlayer)
     {
+        playerBeingChased = willChasePlayer;
         chasePlayer = willChasePlayer;
         if (chasePlayer)
         {
