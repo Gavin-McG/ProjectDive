@@ -42,6 +42,9 @@ TagManager:
   - name: Background
     uniqueID: 257891509
     locked: 0
+  - name: Kelp
+    uniqueID: 1084348633
+    locked: 0
   - name: BackWall
     uniqueID: 2867588775
     locked: 0
