@@ -1281,6 +1281,7 @@ MonoBehaviour:
   dialogueTextRate: 60
   shopPages:
   - {fileID: 11400000, guid: 927014b5fefd11a4e9f301aac14c0931, type: 2}
+  - {fileID: 11400000, guid: 927014b5fefd11a4e9f301aac14c0931, type: 2}
   startMessages:
   - Hello there! Looking for anything in particular?
   - Welcome! Please have a look around

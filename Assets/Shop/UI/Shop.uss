@@ -9,13 +9,14 @@
     align-content: auto;
     justify-content: flex-start;
     align-items: flex-end;
+    transition-duration: 0.1s;
 }
 
 .DialogueButton {
     width: 50%;
     min-width: 50%;
     max-width: 50%;
-    background-image: url("project://database/Assets/Shop/Sprites/shop-cancel-button.PNG?fileID=-2988377963527656260&guid=a24e63b8365fca846b0cdeb1dddd2142&type=3#shop-cancel-button_0");
+    background-image: url("project://database/Assets/Shop/Sprites/UI/shop-cancel-button.PNG?fileID=-2988377963527656260&guid=a24e63b8365fca846b0cdeb1dddd2142&type=3#shop-cancel-button_0");
     background-color: rgba(0, 0, 0, 0);
     border-top-width: 0;
     border-right-width: 0;
@@ -30,8 +31,6 @@
     right: 100%;
     position: absolute;
 }
-
-
 
 .top {
     position: absolute;
@@ -55,4 +54,17 @@
     position: absolute;
     left: 0;
     right: 0;
+}
+
+.button:hover {
+    scale: 1.1 1.1 1.1;
+}
+
+.button {
+    scale: 1 1;
+    transition-duration: 0.1s;
+}
+
+.selected {
+    translate: 0 -8%;
 }

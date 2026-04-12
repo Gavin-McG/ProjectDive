@@ -27,10 +27,14 @@ public abstract class ShopItem : ScriptableObject
         };
         if (!itemManager.ChargeItems(costSet)) return false;
         
+        //Inform UpgradeManager of owned upgrade
+        UpgradeManager upgradeManager = Managers.Get<UpgradeManager>();
+        upgradeManager.RegisterOwned(this);
+        
         //Apply effect and return true
         ApplyEffect();
         return true;
     }
 
-    protected abstract void ApplyEffect();
+    public abstract void ApplyEffect();
 }

@@ -46,7 +46,12 @@ public class ShopUI : MonoBehaviour
     }
     private List<ShopOption> shopOptions;
     private int currentShopPageIndex;
+    private int selectedShopItemIndex = -1;
     private ShopItem selectedShopItem;
+    
+    //Page Controls
+    Button leftPageButton;
+    Button rightPageButton;
     
     private void OnEnable()
     {
@@ -91,6 +96,13 @@ public class ShopUI : MonoBehaviour
                 
                 return newOption;
             }).ToList();
+        
+        //Page controls
+        leftPageButton = shopContents.Q<Button>("left-page-button");
+        rightPageButton = shopContents.Q<Button>("right-page-button");
+
+        leftPageButton.clicked += ShiftPageLeft;
+        rightPageButton.clicked += ShiftPageRight;
     }
 
     [ContextMenu("Open Shop")]
@@ -120,6 +132,9 @@ public class ShopUI : MonoBehaviour
 
     public void SetShopPage(int shopPageIndex)
     {
+        UpgradeManager upgradeManager = Managers.Get<UpgradeManager>();
+        
+        //Set shop items
         currentShopPageIndex = shopPageIndex;
         ShopPage shopPage = shopPages.ElementAt(shopPageIndex);
         for (int i = 0; i < shopOptions.Count; i++)
@@ -127,7 +142,7 @@ public class ShopUI : MonoBehaviour
             ShopItem shopItem = shopPage.shopItems[i];
             ShopOption shopOption = shopOptions[i];
 
-            if (shopItem == null)
+            if (shopItem == null || upgradeManager.HasUpgrade(shopItem))
             {
                 shopOption.root.visible = false;
                 continue;
@@ -138,20 +153,52 @@ public class ShopUI : MonoBehaviour
             shopOption.costText.text = shopItem.costAmount.ToString();
             shopOption.costImage.sprite = shopItem.costItem.icon;
         }
+        
+        //Set page buttons
+        leftPageButton.visible = shopPageIndex != 0;
+        rightPageButton.visible = shopPageIndex != shopPages.Count - 1;
+    }
+
+    public void ShiftPageLeft()
+    {
+        int newPageIndex = currentShopPageIndex - 1;
+        if (newPageIndex < 0) newPageIndex = 0;
+        SetShopPage(newPageIndex);
+    }
+
+    public void ShiftPageRight()
+    {
+        int newPageIndex = currentShopPageIndex + 1;
+        if (newPageIndex >= shopOptions.Count) newPageIndex = shopOptions.Count - 1;
+        SetShopPage(newPageIndex);
     }
 
     public void SelectShopItem(int optionIndex)
     {
+        if (optionIndex == selectedShopItemIndex) return;
+        
+        selectedShopItemIndex = optionIndex;
+        
+        //Get Item to select
         ShopPage shopPage = shopPages.ElementAt(currentShopPageIndex);
         selectedShopItem = shopPage.shopItems[optionIndex];
+        
+        //Adjust UI element
+        shopOptions[selectedShopItemIndex].root.AddToClassList("selected");
         
         BeginDialoguePrompt(selectedShopItem.prompt);
     }
 
     public void DeselectShopItem()
     {
+        if (selectedShopItemIndex == -1) return;
+        
         selectedShopItem = null;
         dialogueButtonContainer.visible = false;
+        
+        //Adjust UI element
+        shopOptions[selectedShopItemIndex].root.RemoveFromClassList("selected");
+        selectedShopItemIndex = -1;
     }
 
     public void BuySelectedShopItem()
@@ -171,7 +218,8 @@ public class ShopUI : MonoBehaviour
         string text = purchaseMessages.ElementAt(Random.Range(0, purchaseMessages.Count));
         UpdateDialogueText(text);
         
-        //TODO remove bought item from display
+        //Refresh Shop Page
+        SetShopPage(currentShopPageIndex);
     }
 
     public void BeginDialoguePrompt(string text)
@@ -223,6 +271,8 @@ public class ShopUI : MonoBehaviour
         //Update to random starting text
         string text = startMessages.ElementAt(Random.Range(0, startMessages.Count));
         UpdateDialogueText(text);
+        
+        closeButton.visible = true;
     }
     
     IEnumerator CloseShopRoutine()
@@ -230,6 +280,8 @@ public class ShopUI : MonoBehaviour
         //Update to random goodbye text
         string text = goodbyeMessages.ElementAt(Random.Range(0, goodbyeMessages.Count));
         UpdateDialogueText(text);
+        
+        closeButton.visible = false;
         
         yield return new WaitForSeconds(1.2f);
         

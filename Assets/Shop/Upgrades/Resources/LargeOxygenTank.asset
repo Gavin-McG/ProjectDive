@@ -17,4 +17,4 @@ MonoBehaviour:
   costItem: {fileID: 11400000, guid: c6899a34e36db6c4d8eecd54202408ad, type: 2}
   costAmount: 5
   prompt: Carrying more of the thing that keeps you alive? Seems like a good idea
-  oxygenMultiplier: 0
+  oxygenMultiplier: 1.75
