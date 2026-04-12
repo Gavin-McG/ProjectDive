@@ -1,0 +1,36 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ShopItem" src="project://database/Assets/Shop/UI/ShopItem.uxml?fileID=9197481963319205126&amp;guid=e83b304c77fe92e4a9a98a254ebb12e0&amp;type=3#ShopItem"/>
+    <Style src="project://database/Assets/Shop/UI/Shop.uss?fileID=7433441132597879392&amp;guid=37235207b57e6724c8d474595cfcabe3&amp;type=3#Shop"/>
+    <ui:Image name="background-container" source="project://database/Assets/Shop/Sprites/shop-background-ocean.PNG?fileID=2800000&amp;guid=0286645a01d321448bfa9e948ba91182&amp;type=3#shop-background-ocean" scale-mode="StretchToFill" class="top" style="width: 100%; min-width: 100%; max-width: 100%; height: 100%; min-height: 100%; max-height: 100%; transition-duration: 0.8s; transition-timing-function: ease-out-bounce;"/>
+    <ui:Image name="horace-container" source="project://database/Assets/Shop/Sprites/shop-background-horace.PNG?fileID=2800000&amp;guid=4111040c481789643927e40b63171caf&amp;type=3#shop-background-horace" scale-mode="ScaleAndCrop" class="left" style="width: auto; height: 100%; min-width: auto; max-width: none; max-height: 100%; min-height: 100%; aspect-ratio: 1.777778; transition-duration: 1s;">
+        <ui:Image source="project://database/Assets/Shop/Sprites/shop-dialogue-box.PNG?fileID=-4737587997311340507&amp;guid=10dc86aa0cfd7a844b02d86de71c8319&amp;type=3#shop-dialogue-box_0" name="dialogue-container" style="position: absolute; top: 28px; left: 16px; width: 30%; min-width: 30%; max-width: 30%; aspect-ratio: auto; height: 40%; max-height: 40%; min-height: 40%; padding-top: 0%; padding-left: 0%; padding-right: 0%; padding-bottom: 0%;">
+            <ui:VisualElement name="ShopDialogueContainer" style="flex-grow: 1; padding-top: 6%; padding-left: 14%; padding-right: 14%; margin-right: 0%; padding-bottom: 20%;">
+                <ui:Label text="This is an example Dialogue. It should not be seen in game" name="dialogue-text" style="max-height: 50%; height: 50%; min-height: 50%; font-size: 35%; -unity-font-style: normal; white-space: normal; -unity-text-align: upper-center; text-overflow: clip;"/>
+                <ui:VisualElement name="dialogue-button-container" style="flex-grow: 1; height: 45%; min-height: 45%; max-height: 45%; flex-direction: row; justify-content: space-between;">
+                    <ui:Button name="dialogue-no-button" class="DialogueButton" style="margin-top: 0; margin-left: 0; margin-bottom: 0; margin-right: 0;"/>
+                    <ui:Button name="dialogue-yes-button" class="DialogueButton" style="background-image: url(&quot;project://database/Assets/Shop/Sprites/shop-confirm-button.PNG?fileID=-8868553076007621137&amp;guid=7be7b8849062462458b380ceb073400b&amp;type=3#shop-confirm-button_0&quot;); margin-bottom: 0; margin-left: 0; margin-top: 0; margin-right: 0;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:Image>
+    </ui:Image>
+    <ui:VisualElement name="shop-container" enabled="true" class="right" style="flex-grow: 1; height: 100%; min-height: 100%; max-height: 100%; width: 100%; min-width: 100%; max-width: 100%; justify-content: flex-start; visibility: visible; flex-direction: row-reverse; align-self: auto; align-items: center; transition-duration: 1s;">
+        <ui:Image name="ShopBackground" source="project://database/Assets/Shop/Sprites/shop-shelf.png?fileID=1880097546398971005&amp;guid=a70c11d3b31a3aa4faaa81a78964ed3f&amp;type=3#shop-shelf_0" style="height: auto; aspect-ratio: 1.5; align-content: auto; justify-content: center; width: 55%; min-width: 55%; max-width: 55%;">
+            <ui:VisualElement name="PageButtons" style="flex-grow: 1; width: 100%; height: 100%; min-height: 100%; max-height: 100%; max-width: 100%; min-width: 100%; position: absolute; justify-content: space-between; flex-direction: row; align-self: center; align-items: center;">
+                <ui:Button text="" name="LeftPageButton" icon-image="" style="width: 18%; min-width: 18%; max-width: 18%; aspect-ratio: 1; background-color: rgba(188, 188, 188, 0); padding-top: 0; padding-bottom: 0; padding-right: 0; padding-left: 0; margin-right: 0; margin-top: 0; margin-left: 0; margin-bottom: 0; align-self: auto; justify-content: flex-start; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
+                    <ui:Image name="Icon" source="project://database/Assets/Shop/Sprites/shop-left-button.png?fileID=-5017511504700741764&amp;guid=df3e75878a870284fa2f4362ac7e134e&amp;type=3#shop-left-button_0" picking-mode="Ignore" style="width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%;"/>
+                </ui:Button>
+                <ui:Button text="" name="RightPageButton" icon-image="" style="width: 18%; min-width: 18%; max-width: 18%; aspect-ratio: 1; background-color: rgba(188, 188, 188, 0); padding-top: 0; padding-bottom: 0; padding-right: 0; padding-left: 0; margin-right: 0; margin-top: 0; margin-left: 0; margin-bottom: 0; align-self: auto; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
+                    <ui:Image name="Icon" source="project://database/Assets/Shop/Sprites/shop-right-button.png?fileID=5988019707516426895&amp;guid=37c190cca1d97424da44c54b01bbb766&amp;type=3#shop-right-button_0" picking-mode="Ignore" style="width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%;"/>
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="Items" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; margin-left: 0%; margin-right: 0%; justify-content: center; align-self: center; align-content: stretch; align-items: center; aspect-ratio: auto; width: 100%; min-width: 100%; max-width: 100%; max-height: 100%; min-height: 100%; height: 100%; padding-left: 15%; padding-right: 15%; padding-top: 5%;">
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+                <ui:Instance template="ShopItem" name="ShopItem" class="ShopItem"/>
+            </ui:VisualElement>
+        </ui:Image>
+    </ui:VisualElement>
+</ui:UXML>

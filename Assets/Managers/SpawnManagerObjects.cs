@@ -5,8 +5,10 @@ public class SpawnManagerObjects
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void SpawnManagers()
     {
+        Managers.managers.Clear();
+        
         var managerSOs = Resources.LoadAll<ManagerObject>("");
-
+        
         foreach (var managerSO in managerSOs)
         {
             //Create and mark object as DoNotDestroy
