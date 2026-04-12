@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EnemyFollowsPath : MonoBehaviour
 {
     [SerializeField] Transform[] pathPoints;
+    [SerializeField] float waitTimeBetweenEachPoint = 0.0f;
     [SerializeField] float pathSpeed = 1.0f;
     [SerializeField] float pathAccleration = 1.0f;
     private int pathPointCounter = 0;

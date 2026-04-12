@@ -78,18 +78,20 @@ public class EnemyLeatherbackAttack : MonoBehaviour
     {
         if (!charging && !attacking && settingup)
         {
-            if (EnemyTriggersPhase.IsEnemyInRangeOfPlayer(attackPosition, initPosition, 0.01f)) {
+            if (EnemyTriggersPhase.IsEnemyInRangeOfPlayer(attackPosition, initPosition, 0.1f)) {
                 charging = true;
                 agent.isStopped = true;
+                agent.enabled = false;
                 settingup = false;
             }
             else
             {
                 initPosition = transform.position;
+                playerPosition = playerTransform.position;
                 nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
-                crushDirection = nearestWallPoint - initPosition;
+                crushDirection = nearestWallPoint - playerPosition;
                 crushDirection.Normalize();
-                attackPosition = -crushDirection * distanceFromPlayerForAttack + new Vector2(playerTransform.position.x, playerTransform.position.y);
+                attackPosition = -crushDirection * distanceFromPlayerForAttack + playerPosition;
                 agent.SetDestination(attackPosition);
             }
         }
@@ -105,6 +107,7 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         {
             charging = false;
             attacking = true;
+            rb.position = agent.nextPosition;
         }
         
         if (!charging && attacking && crushTimer < crushDuration)
@@ -112,10 +115,11 @@ public class EnemyLeatherbackAttack : MonoBehaviour
             crushTimer += Time.deltaTime;
             float value = curve.Evaluate(crushTimer / crushDuration);
             rb.position = Vector3.Lerp(initPosition, nearestWallPoint, value);
+            Debug.Log(rb.position);
             // transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
         }
 
-        if (crushTimer >= crushDuration)
+        if (crushTimer >= crushDuration && attacking)
         {
             crushTimer += Time.deltaTime;
             if (!liftoff && crushTimer >= crushLiftoffTime + crushDuration)
@@ -125,11 +129,15 @@ public class EnemyLeatherbackAttack : MonoBehaviour
             }
         }
 
-        if (crushTimer >= crushDuration + crushCooldown)
+        if (crushTimer >= crushDuration + crushCooldown && attacking)
         {
+            attacking = false;
             enemyLeatherbackManager.ToggleAttackPhase(false);
             enemyLeatherbackManager.ToggleIdlePhase(true);
+            agent.enabled = true;
             agent.isStopped = false;
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0;
         }
     }
 
@@ -144,6 +152,7 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         crushDirection.Normalize();
         liftoff = false;
         attacking = false;
+        charging = false;
         settingup = true;
         // charging = true;
 

@@ -10,6 +10,7 @@ public class EnemyLeatherbackManager : MonoBehaviour
 
     EnemyLeatherbackAttack leatherbackAttack;
     EnemyFollowsPlayer leatherbackChase;
+    EnemyFollowsPath leatherbackIdle;
 
     bool idlePhase = true;
     bool attackPhase = false;
@@ -21,26 +22,37 @@ public class EnemyLeatherbackManager : MonoBehaviour
         if (playerTransform == null) GameObject.FindGameObjectWithTag("Player");
         leatherbackAttack = GetComponent<EnemyLeatherbackAttack>();
         leatherbackChase = GetComponent<EnemyFollowsPlayer>();
+        leatherbackIdle = GetComponent<EnemyFollowsPath>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (idlePhase & !chasePhase &&
+            !EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
+        {
+            
+        }
         if (idlePhase && !chasePhase && EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
         {
+            // Start Chasing from Idle
             chasePhase = true;
             idlePhase = false;
+            leatherbackChase.ToggleChasePlayer(true);
             // attackPhase = true;
         }
 
-        else if (chasePhase && !EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, attackRadius))
+        else if (chasePhase && !EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
         {
-            leatherbackChase.ToggleChasePlayer(true);
+            chasePhase = false;
+            idlePhase = true;
+            leatherbackChase.ToggleChasePlayer(false);
         }
 
         else if (chasePhase &&
             EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, attackRadius))
         {
+            // Start Attack Phase from Chasing
             leatherbackChase.ToggleChasePlayer(false);
             attackPhase = true;
             chasePhase = false;
@@ -48,6 +60,7 @@ public class EnemyLeatherbackManager : MonoBehaviour
         }
         else if (attackPhase && !attacking)
         {
+            // Toggle Attacking
             leatherbackAttack.TriggerLeatherbackAttack();
             attacking = true;
         }
