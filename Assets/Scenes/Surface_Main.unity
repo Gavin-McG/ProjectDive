@@ -1278,6 +1278,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a645c582757e984cb0952e1f89948fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopUI
+  dialogueTextRate: 60
+  shopPages:
+  - {fileID: 11400000, guid: 927014b5fefd11a4e9f301aac14c0931, type: 2}
+  startMessages:
+  - Hello there! Looking for anything in particular?
+  - Welcome! Please have a look around
+  - Hey friend! Anything here spark your interest?
+  tooExpensiveMessage: Sorry, it looks like that's out of your price range
+  purchaseMessages:
+  - Claw-some choice!
+  - Hope you enjoy it!
+  - Thank you for your purchase!
+  goodbyeMessages:
+  - Thanks for your visit!
+  - See you later!
+  - Come again soon!
 --- !u!1 &1322406130
 GameObject:
   m_ObjectHideFlags: 0
