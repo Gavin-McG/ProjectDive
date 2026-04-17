@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{e9df2f51-06f2-4969-b076-d3125c7055b1}">
+		<property name="assetPath">
+			<value>Ambiance/IslandAmbiance_Gulls3.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>20.316961451247167</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{40bd467d-0d93-46e2-8575-ff5f0caffcb2}</destination>
+		</relationship>
+	</object>
+</objects>

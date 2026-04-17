@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{f63a6a3f-b988-4317-96ba-5ffbd9261ae7}">
+		<property name="note" />
 		<property name="assetPath">
 			<value>Music/shallows_explore.wav</value>
 		</property>
