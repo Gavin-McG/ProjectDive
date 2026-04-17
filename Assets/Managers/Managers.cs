@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Managers
 {
-    private static Dictionary<Type, MonoBehaviour> managers = new();
+    public static Dictionary<Type, MonoBehaviour> managers = new();
 
     public static void Add<T>(T manager) where T : MonoBehaviour
     {

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b25a83eee8d91540a9fa79dfe23adb6, type: 3}
+  m_Name: LargeOxygenTank
+  m_EditorClassIdentifier: Assembly-CSharp::OxygenTankUpgrade
+  itemName: Large Oxygen Tank
+  icon: {fileID: 21300000, guid: c1f25b6ea41ce4c4da221d3e2d4566ee, type: 3}
+  costItem: {fileID: 11400000, guid: c6899a34e36db6c4d8eecd54202408ad, type: 2}
+  costAmount: 5
+  prompt: Carrying more of the thing that keeps you alive? Seems like a good idea
+  oxygenMultiplier: 1.75

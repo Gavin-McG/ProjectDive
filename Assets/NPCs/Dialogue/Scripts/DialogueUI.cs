@@ -117,7 +117,7 @@ public class DialogueUI : MonoBehaviour
             return;
         }
         
-        StartCoroutine(SetPanelText(info.text, 0.5f, 0.05f));
+        StartCoroutine(SetPanelText(info.text, 0.5f, 0.02f));
         
         //Set profile
         ProfileParams profileInfo = info.GetTextParams<ProfileParams>();

@@ -323,7 +323,7 @@
         "com.unity.graphtoolkit": "0.4.0-exp.2",
         "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
-      "hash": "7a35d5e729f45b247f8a1db8715469770bf0448a"
+      "hash": "827650280b4c72850516bd3a9e05d28c076ec16f"
     },
     "com.wolverinesoft.savesystem": {
       "version": "https://github.com/Gavin-McG/SaveSystem.git",
