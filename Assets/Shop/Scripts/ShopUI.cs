@@ -224,7 +224,10 @@ public class ShopUI : MonoBehaviour
         //Update to random purchase text
         string text = purchaseMessages.ElementAt(Random.Range(0, purchaseMessages.Count));
         UpdateDialogueText(text);
-        
+
+        // Play purchase sound
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Actions/Purchase Item", Camera.main.transform.position);
+
         //Refresh Shop Page
         SetShopPage(currentShopPageIndex);
     }

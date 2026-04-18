@@ -8,6 +8,10 @@ public class ChangeSceneOnInteract : InteractTriggerBehavior
     
     public override void TriggerInteraction(GameObject interactor)
     {
+
+        // Play transition sound
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Actions/Transition", Camera.main.transform.position);
+
         SceneManager.LoadScene(targetScene.name);
     }
 }

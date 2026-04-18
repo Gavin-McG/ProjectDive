@@ -40,6 +40,10 @@ public class PlayerDashController : MonoBehaviour
         {
             rb.AddForce(dashVector, ForceMode2D.Force);
             canDash = false;
+
+            // Play dash sfx
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Actions/Swim Boost", Camera.main.transform.position);
+
         }
 
         if (!canDash)
