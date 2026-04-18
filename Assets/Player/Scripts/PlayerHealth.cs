@@ -36,6 +36,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void SetHealth(float amount)
     {
-        health += amount;
+        health = amount;
     }
 }

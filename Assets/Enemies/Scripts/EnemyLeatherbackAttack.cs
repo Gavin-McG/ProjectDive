@@ -139,6 +139,7 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         {
             if (crushed)
             {
+                Debug.Log("Crushed!");
                 PlayerHealthToZero();
             }
             leatherbackCollider.ToggleCrushing(false);
