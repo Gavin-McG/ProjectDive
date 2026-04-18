@@ -51,15 +51,15 @@ MonoBehaviour:
       Data2: 1259643083
       Data3: -378180459
       Data4: -1923271960
-    Path: event:/Ambiance
+    Path: event:/Ambiance/Level Ambaince
   Event: 
   EventPlayTrigger: 1
-  EventStopTrigger: 0
+  EventStopTrigger: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1

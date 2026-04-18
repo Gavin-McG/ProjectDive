@@ -1,5 +1,85 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9195419082112854030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Battle Trigger
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Battle Trigger
+  StudioPath: parameter:/Battle Trigger
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4057424463
+    data2: 2652393902
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Explore
+  - Battle
+  Exists: 1
+--- !u!114 &-8874203051718344471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Actions/Swim Boost
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Actions/Swim Boost
+  Guid:
+    Data1: -1670235772
+    Data2: 1134051834
+    Data3: 401100425
+    Data4: -981104955
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7544569899149552064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Actions/Item Collect
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Actions/Item Collect
+  Guid:
+    Data1: 1615977949
+    Data2: 1101188403
+    Data3: 1982469538
+    Data4: 1935588176
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6927792410665666560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,12 +95,38 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639097089598911217
+  lastModified: 639121077927699570
   FileSizes:
   - Name: Desktop
-    Value: 860
+    Value: 1298
   Exists: 1
---- !u!114 &-2636715600690866284
+--- !u!114 &-6717960656841399491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Shallows Music/Battle Trigger
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Battle Trigger
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4057424463
+    data2: 2652393902
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Explore
+  - Battle
+  Exists: 1
+--- !u!114 &-6482378440362811806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,9 +136,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music
+  m_Name: event:/Actions/Click
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Music
+  Path: event:/Actions/Click
+  Guid:
+    Data1: -880461265
+    Data2: 1163163229
+    Data3: -270562148
+    Data4: 1341901051
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6024136994820687631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Shallows Music
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Music/Shallows Music
   Guid:
     Data1: -439162539
     Data2: 1218681883
@@ -43,10 +176,35 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -6717960656841399491}
   MinDistance: 1
   MaxDistance: 20
-  Length: 38500
+  Length: 139641
+--- !u!114 &-4492568367157404784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Parameter 1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Parameter 1
+  StudioPath: parameter:/Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2599614621
+    data2: 2731820660
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-2403137964843222959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,10 +220,10 @@ MonoBehaviour:
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639097089598841079
+  lastModified: 639121077927674183
   FileSizes:
   - Name: Desktop
-    Value: 454272
+    Value: 1745792
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -83,24 +241,44 @@ MonoBehaviour:
   - {fileID: -6927792410665666560}
   - {fileID: -2403137964843222959}
   EditorEvents:
-  - {fileID: 3634921479466241015}
-  - {fileID: 162706931932664281}
-  - {fileID: -2636715600690866284}
-  EditorParameters: []
+  - {fileID: 7844711950065833117}
+  - {fileID: 5799573566770651725}
+  - {fileID: -6482378440362811806}
+  - {fileID: 5408512291889222826}
+  - {fileID: 4337173339967006197}
+  - {fileID: -6024136994820687631}
+  - {fileID: -8874203051718344471}
+  - {fileID: 6238391851769022501}
+  - {fileID: -7544569899149552064}
+  EditorParameters:
+  - {fileID: -9195419082112854030}
+  - {fileID: -4492568367157404784}
   MasterBanks:
   - {fileID: -2403137964843222959}
   StringsBanks:
   - {fileID: -6927792410665666560}
   cacheVersion: 131858
-  cacheTime: 639097089598911217
+  cacheTime: 639121077927699570
   SerializableEventsDict:
-  - key: event:/Ambiance
+  - key: event:/Ambiance/Island
     index: 0
-  - key: event:/Item Collect
+  - key: event:/Music/Horace Music
     index: 1
-  - key: event:/Music
+  - key: event:/Actions/Click
     index: 2
---- !u!114 &162706931932664281
+  - key: event:/Actions/Purchase Item
+    index: 3
+  - key: event:/Actions/Transition
+    index: 4
+  - key: event:/Music/Shallows Music
+    index: 5
+  - key: event:/Actions/Swim Boost
+    index: 6
+  - key: event:/Ambiance/Level Ambaince
+    index: 7
+  - key: event:/Actions/Item Collect
+    index: 8
+--- !u!114 &4337173339967006197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,14 +288,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Item Collect
+  m_Name: event:/Actions/Transition
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Item Collect
+  Path: event:/Actions/Transition
   Guid:
-    Data1: 1615977949
-    Data2: 1101188403
-    Data3: 1982469538
-    Data4: 1935588176
+    Data1: -880951220
+    Data2: 1094784105
+    Data3: -1917661305
+    Data4: -1599299973
   Banks:
   - {fileID: -2403137964843222959}
   IsStream: 0
@@ -127,7 +305,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &3634921479466241015
+--- !u!114 &5408512291889222826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,9 +315,63 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambiance
+  m_Name: event:/Actions/Purchase Item
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Ambiance
+  Path: event:/Actions/Purchase Item
+  Guid:
+    Data1: -1275933634
+    Data2: 1214598286
+    Data3: -427010679
+    Data4: 2010617281
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5799573566770651725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Horace Music
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Music/Horace Music
+  Guid:
+    Data1: 591456553
+    Data2: 1102954523
+    Data3: 1157973182
+    Data4: 1984061630
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 34041
+--- !u!114 &6238391851769022501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance/Level Ambaince
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ambiance/Level Ambaince
   Guid:
     Data1: -457380135
     Data2: 1259643083
@@ -154,3 +386,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 15593
+--- !u!114 &7844711950065833117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance/Island
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Ambiance/Island
+  Guid:
+    Data1: 245243922
+    Data2: 1164862842
+    Data3: 1023690895
+    Data4: -1385211453
+  Banks:
+  - {fileID: -2403137964843222959}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56816
