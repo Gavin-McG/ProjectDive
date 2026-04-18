@@ -730,7 +730,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7134188431222053064, guid: 1a9722ee0f0ca70409ba8580aff6837d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1120407598}
   m_SourcePrefab: {fileID: 100100000, guid: 1a9722ee0f0ca70409ba8580aff6837d, type: 3}
 --- !u!1 &845598029
 GameObject:
@@ -1136,11 +1139,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1120407595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7134188431222053064, guid: 1a9722ee0f0ca70409ba8580aff6837d, type: 3}
+  m_PrefabInstance: {fileID: 767130350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1120407596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8464390813058883048, guid: 1a9722ee0f0ca70409ba8580aff6837d, type: 3}
   m_PrefabInstance: {fileID: 767130350}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1120407597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3775692222940076943, guid: 1a9722ee0f0ca70409ba8580aff6837d, type: 3}
+  m_PrefabInstance: {fileID: 767130350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120407595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+--- !u!114 &1120407598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120407595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ddcbbba117bd64faa6c13e9ae65901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  openShopEvent: {fileID: 11400000, guid: 9a922cf6ca152a449a324642cb785c78, type: 2}
 --- !u!1 &1140156081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1418,7 @@ MonoBehaviour:
   - Thanks for your visit!
   - See you later!
   - Come again soon!
+  island_ambiance_event: {fileID: 1120407597}
 --- !u!114 &1299356859
 MonoBehaviour:
   m_ObjectHideFlags: 0

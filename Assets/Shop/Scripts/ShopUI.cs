@@ -52,7 +52,10 @@ public class ShopUI : MonoBehaviour
     //Page Controls
     Button leftPageButton;
     Button rightPageButton;
-    
+
+    // Island Ambiance Emitter Reference
+    [SerializeField] private FMODUnity.StudioEventEmitter island_ambiance_event;
+
     private void OnEnable()
     {
         UIDocument document = GetComponent<UIDocument>();
@@ -103,6 +106,7 @@ public class ShopUI : MonoBehaviour
 
         leftPageButton.clicked += ShiftPageLeft;
         rightPageButton.clicked += ShiftPageRight;
+
     }
 
     [ContextMenu("Open Shop")]
@@ -295,6 +299,10 @@ public class ShopUI : MonoBehaviour
 
         backgroundContainer.AddToClassList("top");
         backgroundContainer.RemoveFromClassList("center");
+
+        // Re-enable island ambiance
+        island_ambiance_event.EventInstance.start();
+
     }
 
     IEnumerator BeginDialoguePromptRoutine(string prompt)
