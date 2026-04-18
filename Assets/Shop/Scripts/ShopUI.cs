@@ -54,7 +54,10 @@ public class ShopUI : MonoBehaviour
     Button rightPageButton;
 
     // Island Ambiance Emitter Reference
-    [SerializeField] private FMODUnity.StudioEventEmitter island_ambiance_event;
+    [SerializeField] private FMODUnity.StudioEventEmitter IslandAmbianceEvent;
+
+    // Shop Music Emitter Reference
+    [SerializeField] private FMODUnity.StudioEventEmitter ShopMusicEvent;
 
     private void OnEnable()
     {
@@ -301,7 +304,10 @@ public class ShopUI : MonoBehaviour
         backgroundContainer.RemoveFromClassList("center");
 
         // Re-enable island ambiance
-        island_ambiance_event.EventInstance.start();
+        IslandAmbianceEvent.EventInstance.start();
+
+        // Re-disable Horace music
+        ShopMusicEvent.EventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
     }
 

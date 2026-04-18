@@ -9,6 +9,8 @@ public class OpenShopListener : MonoBehaviour
     
     private ShopUI shopUI;
 
+    [SerializeField] private FMODUnity.StudioEventEmitter ShopMusicEvent;
+
     private void OnEnable()
     {
         shopUI = GetComponent<ShopUI>();
@@ -23,5 +25,6 @@ public class OpenShopListener : MonoBehaviour
     private void OpenShop()
     {
         shopUI.OpenShop();
+        ShopMusicEvent.Play();
     }
 }
