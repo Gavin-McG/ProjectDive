@@ -7,6 +7,10 @@ public class EnemyLeatherbackAttack : MonoBehaviour
     Vector2 playerPosition;
     NavMeshAgent agent;
     EnemyLeatherbackManager enemyLeatherbackManager;
+    EnemyLeatherbackColliderManager leatherbackCollider;
+    PlayerSwimController playerSwimController;
+    PlayerDashController playerDashController;
+    PlayerHealth playerHealth;
     Rigidbody2D rb;
 
     [SerializeField] float searchRadius = 50;
@@ -38,6 +42,9 @@ public class EnemyLeatherbackAttack : MonoBehaviour
     Vector2 nearestWallPoint;
     Vector2 initPosition;
     Vector2 crushDirection;
+    Vector2 playerLeatherbackDistance;
+    
+    bool crushed = false;
 
     //Debugging
     // public bool TriggerAttack = false;
@@ -61,6 +68,13 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        
+        leatherbackCollider = transform.GetChild(0).GetComponent<EnemyLeatherbackColliderManager>();
+        if (!leatherbackCollider) Debug.Log("Leatherback Collider not found");
+
+        playerSwimController = playerTransform.GetComponent<PlayerSwimController>();
+        playerDashController = playerTransform.GetComponent<PlayerDashController>();
+        playerHealth = playerTransform.GetComponent<PlayerHealth>();
 
         crushTimer = crushDuration;
         chargeTimer = chargeDuration;
@@ -97,6 +111,7 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         }
         if (charging && !attacking && chargeTimer < chargeDuration)
         {
+            leatherbackCollider.ToggleAiming(true);
             initPosition = transform.position;
             nearestWallPoint = EnemyTriggersPhase.FindNearestWallPoint(playerTransform, searchRadius);
             crushDirection = nearestWallPoint - initPosition;
@@ -108,6 +123,8 @@ public class EnemyLeatherbackAttack : MonoBehaviour
             charging = false;
             attacking = true;
             rb.position = agent.nextPosition;
+            leatherbackCollider.ToggleAiming(false);
+            leatherbackCollider.ToggleCrushing(true);
         }
         
         if (!charging && attacking && crushTimer < crushDuration)
@@ -115,12 +132,16 @@ public class EnemyLeatherbackAttack : MonoBehaviour
             crushTimer += Time.deltaTime;
             float value = curve.Evaluate(crushTimer / crushDuration);
             rb.position = Vector3.Lerp(initPosition, nearestWallPoint, value);
-            Debug.Log(rb.position);
             // transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
         }
 
         if (crushTimer >= crushDuration && attacking)
         {
+            if (crushed)
+            {
+                PlayerHealthToZero();
+            }
+            leatherbackCollider.ToggleCrushing(false);
             crushTimer += Time.deltaTime;
             if (!liftoff && crushTimer >= crushLiftoffTime + crushDuration)
             {
@@ -138,6 +159,7 @@ public class EnemyLeatherbackAttack : MonoBehaviour
             agent.isStopped = false;
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0;
+            leatherbackCollider.ResetRotation();
         }
     }
 
@@ -159,5 +181,76 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         attackPosition = -crushDirection * distanceFromPlayerForAttack + playerPosition;
         agent.isStopped = false;
         agent.SetDestination(attackPosition);
+    }
+
+    public void StopLeatherbackAttack()
+    {
+        attacking = false;
+        enemyLeatherbackManager.ToggleAttackPhase(false);
+        enemyLeatherbackManager.ToggleIdlePhase(true);
+        agent.enabled = true;
+        agent.isStopped = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0;
+
+        crushTimer = crushDuration;
+        chargeTimer = chargeDuration;
+        liftoff = true;
+        attacking = true;
+        charging = true;
+        settingup = false;
+
+    }
+
+    public void SetPlayerLeatherbackDistance()
+    {
+        playerLeatherbackDistance = transform.position - playerTransform.position;
+        Debug.Log(playerLeatherbackDistance);
+    }
+
+    public void PlayerCrushingMovement()
+    {
+        SetPlayerLeatherbackDistance();
+        Rigidbody2D playerRb = playerTransform.GetComponent<Rigidbody2D>();
+        CircleCollider2D[] playerColliders = playerTransform.GetComponents<CircleCollider2D>();
+        foreach (CircleCollider2D playerCollider in playerColliders)
+        {
+            if (!playerCollider.isTrigger)
+            {
+                int playerLayer = LayerMask.NameToLayer("Player");
+                int enemyLayer = LayerMask.NameToLayer("Lighting-Tiles");
+                Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+            }
+        }
+        playerSwimController.canSwim = false;
+        playerDashController.canDash = false;
+        playerRb.position = rb.position + playerLeatherbackDistance;
+        // playerTransform.position = new Vector2(transform.position.x, transform.position.y) + playerLeatherbackDistance;
+        crushed = true;
+    }
+
+    public void PlayerHealthToZero()
+    {
+        playerHealth.SetHealth(0.0f);
+    }
+
+    public bool GetCharging()
+    {
+        return charging;
+    }
+
+    public bool GetCrushing()
+    {
+        return attacking;
+    }
+
+    public float GetCrushingProgress()
+    {
+        return crushTimer / crushDuration;
+    }
+
+    public float GetChargingProgress()
+    {
+        return chargeTimer / chargeDuration;
     }
 }

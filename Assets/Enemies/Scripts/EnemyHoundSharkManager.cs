@@ -20,7 +20,7 @@ public class EnemyHoundSharkManager : EnemyChaserManager
             attacking = true;
             enemyAttacking.HoundSharkAttack();
             enemyPathing.ToggleFollowPath(false);  
-            enemyFollows.ToggleChasePlayer(false);
+            enemyFollows.ToggleChasePlayer(false, gameObject);
         }
         else if (!attackPhase && attacking)
         {
@@ -33,7 +33,7 @@ public class EnemyHoundSharkManager : EnemyChaserManager
             chasePlayerPhase = true;
             idlePhase = false;
             idling = false;
-            enemyFollows.ToggleChasePlayer(true);
+            enemyFollows.ToggleChasePlayer(true, gameObject);
             enemyPathing.ToggleFollowPath(false);
             // enemyIdle.ToggleIdling(false);
         }
@@ -42,7 +42,7 @@ public class EnemyHoundSharkManager : EnemyChaserManager
         {
             chasePlayerPhase = false;
             idlePhase = true;
-            enemyFollows.ToggleChasePlayer(false);
+            enemyFollows.ToggleChasePlayer(false, gameObject);
             // enemyIdle.ToggleIdling(false);
         }
         else if (idlePhase && !idling)

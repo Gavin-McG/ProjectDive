@@ -16,13 +16,15 @@ public class EnemyLeatherbackManager : MonoBehaviour
     bool attackPhase = false;
     bool attacking = false;
     bool chasePhase = false;
+    [SerializeField] bool playerInsideCave = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (playerTransform == null) GameObject.FindGameObjectWithTag("Player");
+        if (playerTransform == null) playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         leatherbackAttack = GetComponent<EnemyLeatherbackAttack>();
         leatherbackChase = GetComponent<EnemyFollowsPlayer>();
         leatherbackIdle = GetComponent<EnemyFollowsPath>();
+        leatherbackIdle.ToggleFollowPath(true);
     }
 
     // Update is called once per frame
@@ -31,29 +33,33 @@ public class EnemyLeatherbackManager : MonoBehaviour
         if (idlePhase & !chasePhase &&
             !EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
         {
-            
+            // Idle -> Idle
+            leatherbackIdle.ToggleFollowPath(true);
         }
-        if (idlePhase && !chasePhase && EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
+        if (idlePhase && !chasePhase && EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius) && playerInsideCave)
         {
-            // Start Chasing from Idle
+            // Idle -> Chase
+            leatherbackIdle.ToggleFollowPath(false);
             chasePhase = true;
             idlePhase = false;
-            leatherbackChase.ToggleChasePlayer(true);
+            leatherbackChase.ToggleChasePlayer(true, gameObject);
             // attackPhase = true;
         }
 
-        else if (chasePhase && !EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius))
+        else if (chasePhase &&
+                 (!EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, chaseRadius) || !playerInsideCave))
         {
+            // Chase -> Idle
+            leatherbackChase.ToggleChasePlayer(false, gameObject);
             chasePhase = false;
             idlePhase = true;
-            leatherbackChase.ToggleChasePlayer(false);
         }
 
         else if (chasePhase &&
             EnemyTriggersPhase.IsEnemyInRangeOfPlayer(transform.position, playerTransform.position, attackRadius))
         {
-            // Start Attack Phase from Chasing
-            leatherbackChase.ToggleChasePlayer(false);
+            // Chase -> Attack
+            leatherbackChase.ToggleChasePlayer(false, gameObject);
             attackPhase = true;
             chasePhase = false;
             attacking = false;
@@ -63,6 +69,15 @@ public class EnemyLeatherbackManager : MonoBehaviour
             // Toggle Attacking
             leatherbackAttack.TriggerLeatherbackAttack();
             attacking = true;
+        }
+        else if (attacking && !playerInsideCave)
+        {
+            // Attack -> Idle
+            leatherbackAttack.StopLeatherbackAttack();
+            attacking = false;
+            attackPhase = false;
+            chasePhase = false;
+            idlePhase = true;
         }
     }
 
@@ -76,4 +91,24 @@ public class EnemyLeatherbackManager : MonoBehaviour
     {
         idlePhase = toggle;
     }
+    
+    public void TogglePlayerInsideCave(bool toggle)
+    {
+        playerInsideCave = toggle;
+    }
+
+    public bool GetIdle()
+    {
+        return idlePhase;
+    }
+    public bool GetChasing()
+    {
+        return chasePhase;
+    }
+
+    public bool GetAttacking()
+    {
+        return attackPhase;
+    }
+    
 }

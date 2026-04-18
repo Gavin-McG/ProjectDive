@@ -12,6 +12,8 @@ public class EnemyFollowsPath : MonoBehaviour
     NavMeshAgent agent;
     bool followPath = false;
 
+    float waitTimer = 0.0f;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -25,7 +27,12 @@ public class EnemyFollowsPath : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, pathPoints[pathPointCounter].position) < 1.0f)
             {
-                pathPointCounter = (pathPointCounter + 1) % pathPoints.Length;
+                waitTimer += Time.deltaTime;
+                if (waitTimer >= waitTimeBetweenEachPoint)
+                {
+                    waitTimer = 0;
+                    pathPointCounter = (pathPointCounter + 1) % pathPoints.Length;
+                }
             }
             agent.SetDestination(pathPoints[pathPointCounter].position);
         }

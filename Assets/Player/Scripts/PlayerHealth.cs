@@ -33,4 +33,9 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
             SceneManager.LoadScene(deathScene.name);
     }
+
+    public void SetHealth(float amount)
+    {
+        health += amount;
+    }
 }
