@@ -51,10 +51,10 @@ MonoBehaviour:
       Data2: 1218681883
       Data3: 1452099972
       Data4: -1855998027
-    Path: event:/Music
+    Path: event:/Music/Shallows Music
   Event: 
   EventPlayTrigger: 1
-  EventStopTrigger: 0
+  EventStopTrigger: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

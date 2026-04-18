@@ -147,7 +147,7 @@ public class ItemPopups : MonoBehaviour
         */
 
         // Invoke the FMOD event as a one-shot
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Item Collect", Camera.main.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Actions/Item Collect", Camera.main.transform.position);
 
         popupCount[popupNum]--;
         if (popupCount[popupNum] == 0)
