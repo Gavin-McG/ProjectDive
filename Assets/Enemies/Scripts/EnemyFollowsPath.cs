@@ -4,12 +4,15 @@ using UnityEngine.AI;
 public class EnemyFollowsPath : MonoBehaviour
 {
     [SerializeField] Transform[] pathPoints;
+    [SerializeField] float waitTimeBetweenEachPoint = 0.0f;
     [SerializeField] float pathSpeed = 1.0f;
     [SerializeField] float pathAccleration = 1.0f;
     private int pathPointCounter = 0;
     
     NavMeshAgent agent;
     bool followPath = false;
+
+    float waitTimer = 0.0f;
 
     void Start()
     {
@@ -24,7 +27,12 @@ public class EnemyFollowsPath : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, pathPoints[pathPointCounter].position) < 1.0f)
             {
-                pathPointCounter = (pathPointCounter + 1) % pathPoints.Length;
+                waitTimer += Time.deltaTime;
+                if (waitTimer >= waitTimeBetweenEachPoint)
+                {
+                    waitTimer = 0;
+                    pathPointCounter = (pathPointCounter + 1) % pathPoints.Length;
+                }
             }
             agent.SetDestination(pathPoints[pathPointCounter].position);
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BeingChasedTracker : MonoBehaviour
 {
 
-    static bool IsBeingChased = false;
+    public static bool IsBeingChased = false;
 
     [SerializeField] private FMODUnity.StudioEventEmitter ShallowsMusicEvent;
 

@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyFollowsPlayer : MonoBehaviour
 {
+    static HashSet<GameObject> EnemiesChasingPlayer = new HashSet<GameObject>();
+    
     [SerializeField] private GameObject player;
     [SerializeField] private float enemyChaseSpeed;
     [SerializeField] private float enemyChaseAcceleration;
@@ -18,6 +21,11 @@ public class EnemyFollowsPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +43,7 @@ public class EnemyFollowsPlayer : MonoBehaviour
         }
     }
 
-    public void ToggleChasePlayer(bool willChasePlayer)
+    public void ToggleChasePlayer(bool willChasePlayer, GameObject gameObject)
     {
         chasePlayer = willChasePlayer;
         if (chasePlayer)
@@ -43,6 +51,25 @@ public class EnemyFollowsPlayer : MonoBehaviour
             agent.speed = enemyChaseSpeed;
             agent.acceleration = enemyChaseAcceleration;
             chasing = true;
+            EnemiesChasingPlayer.Add(gameObject);
+        }
+        else
+        {
+            if (EnemiesChasingPlayer.Contains(gameObject))
+                EnemiesChasingPlayer.Remove(gameObject);
+        }
+
+        if (EnemiesChasingPlayer.Count > 0)
+        {
+            BeingChasedTracker.IsBeingChased = true;
+        }
+        else if (EnemiesChasingPlayer.Count == 0)
+        {
+            BeingChasedTracker.IsBeingChased = false;
+        }
+        else if (EnemiesChasingPlayer.Count < 0)
+        {
+            Debug.Log("ERROR, EnemiesChasingPlayer.Count is negative");
         }
     }
 }
