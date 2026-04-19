@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float health = 1;
     
     [SerializeField] private float removeRate = 0.2f;
-    [SerializeField] SceneAsset deathScene;
+    [SerializeField] string deathScene;
 
     private OxygenTankDisplay display;
 
@@ -31,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         display?.SetOxygenAmount(health);
         
         if (health <= 0)
-            SceneManager.LoadScene(deathScene.name);
+            SceneManager.LoadScene(deathScene);
     }
 
     public void SetHealth(float amount)

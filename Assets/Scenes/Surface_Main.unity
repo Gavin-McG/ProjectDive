@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b641359282a2fea4e8d65549157d6966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneOnInteract
-  targetScene: {fileID: 102900000, guid: bc2e0eddaa90834488dc99a0bab76390, type: 3}
+  targetScene: Shallows_Main
 --- !u!1 &747075157
 GameObject:
   m_ObjectHideFlags: 0

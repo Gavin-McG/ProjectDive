@@ -3335,10 +3335,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9110369443842368408, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
-      propertyPath: deathScene
-      value: 
-      objectReference: {fileID: 102900000, guid: 89887ec8d215a134fa8733e3f3487a67, type: 3}
-    - target: {fileID: 9110369443842368408, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
       propertyPath: removeRate
       value: 0.05
       objectReference: {fileID: 0}
@@ -32647,7 +32643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b641359282a2fea4e8d65549157d6966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneOnInteract
-  targetScene: {fileID: 102900000, guid: 89887ec8d215a134fa8733e3f3487a67, type: 3}
+  targetScene: Surface_Main
 --- !u!61 &1921880934
 BoxCollider2D:
   m_ObjectHideFlags: 0
