@@ -84,8 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemCollectible
   itemSet:
     items:
-    - itemSo: {fileID: 11400000, guid: 492ca3bb3b32c1645852d4907a1e65fc, type: 2}
-      count: 2
+    - itemSo: {fileID: 11400000, guid: c6899a34e36db6c4d8eecd54202408ad, type: 2}
+      count: 1
 --- !u!1 &4146247301370717708
 GameObject:
   m_ObjectHideFlags: 0

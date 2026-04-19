@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopPage
   shopItems:
   - {fileID: 11400000, guid: 3581fb01d4a37ef4ca1a2872c7ab7c6f, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 3581fb01d4a37ef4ca1a2872c7ab7c6f, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
