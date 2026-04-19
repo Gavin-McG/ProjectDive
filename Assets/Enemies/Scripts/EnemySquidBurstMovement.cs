@@ -4,11 +4,14 @@ public class EnemySquidBurstMovement : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    [SerializeField] float burstDistance = 1.5f;
+    [SerializeField] private float burstDistance = 1.5f;
+
+    EnemySquidSpriteController squidSR;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        squidSR = transform.GetChild(0).GetComponent<EnemySquidSpriteController>();
     }
 
     // Update is called once per frame
@@ -29,5 +32,8 @@ public class EnemySquidBurstMovement : MonoBehaviour
         directionVector.Normalize();
         
         rb.AddForce(directionVector * burstDistance);
+        
+        squidSR.ToggleIsMoving();
+        squidSR.DetermineDirection(horizontalMovement);
     }
 }
