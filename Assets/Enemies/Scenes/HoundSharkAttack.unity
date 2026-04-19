@@ -7262,6 +7262,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Water
       objectReference: {fileID: 0}
+    - target: {fileID: 7677579141774798967, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677579141774798967, guid: 248f4aa5f4d6ac24d82d65a688e0ae8f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7322,7 +7330,7 @@ MonoBehaviour:
   m_BuildHeightMesh: 0
   m_MinRegionArea: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: e4eb749acf3994f56a6d06a4f5c30e94, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4a200be24746f4a689257dcfc0dbb4de, type: 2}
 --- !u!4 &1674961661
 Transform:
   m_ObjectHideFlags: 0
@@ -8789,6 +8797,22 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 870513644}
+    - target: {fileID: 7166053343438865619, guid: 987f9c97bd38d6d43843e9a73cdd7f6a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166053343438865619, guid: 987f9c97bd38d6d43843e9a73cdd7f6a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166053343438865619, guid: 987f9c97bd38d6d43843e9a73cdd7f6a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4225450610088464421, guid: c7c98a8c66a1e4e5f937c9e1f3abb8ab, type: 3}
+    - target: {fileID: 7166053343438865619, guid: 987f9c97bd38d6d43843e9a73cdd7f6a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8969159663819887091, guid: 987f9c97bd38d6d43843e9a73cdd7f6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4508

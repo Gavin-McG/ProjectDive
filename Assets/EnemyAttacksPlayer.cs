@@ -18,11 +18,14 @@ public class EnemyAttacksPlayer : MonoBehaviour
     private bool attackPhase = false;
 
     private Vector3 attackMovement;
+    
+    EnemyHoundsharkSpriteController sharkSC;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         releaseDuration = releaseTimer;
+        sharkSC = transform.GetChild(0).GetComponent<EnemyHoundsharkSpriteController>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class EnemyAttacksPlayer : MonoBehaviour
                 playerSwimController.canSwim = true;
                 playerDashController.canDash = true;
             }
+            sharkSC.ToggleIsMoving(false);
         }
         else if (releasing && releasePhase)
         {
@@ -53,6 +57,7 @@ public class EnemyAttacksPlayer : MonoBehaviour
             // agent.speed = 10.0f;
             // agent.acceleration = 1000.0f;
             releasing = false;
+            sharkSC.ToggleIsMoving(true);
         }
         else if (releaseDuration < releaseTimer && releasePhase)
         {
