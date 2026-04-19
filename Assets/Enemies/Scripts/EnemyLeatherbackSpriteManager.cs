@@ -58,7 +58,6 @@ public class EnemyLeatherbackSpriteManager : MonoBehaviour
             // Animation timing
             float animSpeed = isMoving ? swimAnimSpeedMoving : swimAnimSpeedIdle;
             animTimer += Time.fixedDeltaTime;
-            Debug.Log("animTimer: " + animTimer);
             if (animTimer >= animSpeed)
             {
                 animTimer = 0f;
