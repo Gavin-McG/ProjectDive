@@ -214,15 +214,15 @@ public class EnemyLeatherbackAttack : MonoBehaviour
         SetPlayerLeatherbackDistance();
         Rigidbody2D playerRb = playerTransform.GetComponent<Rigidbody2D>();
         CircleCollider2D[] playerColliders = playerTransform.GetComponents<CircleCollider2D>();
-        foreach (CircleCollider2D playerCollider in playerColliders)
-        {
-            if (!playerCollider.isTrigger)
-            {
-                int playerLayer = LayerMask.NameToLayer("Player");
-                int enemyLayer = LayerMask.NameToLayer("Lighting-Tiles");
-                Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
-            }
-        }
+        // foreach (CircleCollider2D playerCollider in playerColliders)
+        // {
+        //     if (!playerCollider.isTrigger)
+        //     {
+        //         int playerLayer = LayerMask.NameToLayer("Player");
+        //         int enemyLayer = LayerMask.NameToLayer("Lighting-Tiles");
+        //         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        //     }
+        // }
         playerSwimController.canSwim = false;
         playerDashController.canDash = false;
         playerRb.position = rb.position + playerLeatherbackDistance;

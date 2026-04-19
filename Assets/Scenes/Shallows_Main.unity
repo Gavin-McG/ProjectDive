@@ -778,11 +778,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4667545174434650058, guid: e70ea9578f1514975ae59e8ec4e54905, type: 3}
       propertyPath: enemyChaseSpeed
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4667545174434650058, guid: e70ea9578f1514975ae59e8ec4e54905, type: 3}
       propertyPath: enemyChaseAcceleration
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5795228822508150860, guid: e70ea9578f1514975ae59e8ec4e54905, type: 3}
       propertyPath: m_LocalPosition.x

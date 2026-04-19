@@ -136,7 +136,6 @@ public class EnemyLeatherbackSpriteManager : MonoBehaviour
             }
 
             //Crushing animation
-            Debug.Log(progress);
             
             if (progress > 0.0f & progress <= 0.2f) animCrushFrame = 0;
             if (progress > 0.2f & progress <= 0.4f) animCrushFrame = 1;
