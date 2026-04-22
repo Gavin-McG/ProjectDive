@@ -27,6 +27,7 @@ public class DisableBehaviorsOnDialogue : MonoBehaviour
         foreach (Behaviour behavior in behaviors)
         {
             behavior.enabled = false;
+            Debug.Log("Disabling behavior " + behavior.name);
         }
     }
 
@@ -35,6 +36,7 @@ public class DisableBehaviorsOnDialogue : MonoBehaviour
         foreach (Behaviour behavior in behaviors)
         {
             behavior.enabled = true;
+            Debug.Log("Enabling behavior " + behavior.name);
         }
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
     - rid: 1818988332970410857
       type: {class: 'Constant`1[[System.Boolean, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: 0
+        m_Value: 1
     - rid: 1818988332970410858
       type: {class: 'Constant`1[[WolverineSoft.DialogueSystem.DSEventBase, DialogueSystem.Runtime]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
@@ -361,7 +361,7 @@ MonoBehaviour:
           serializedVersion: 2
           x: -730
           y: -170
-          width: 2700
+          width: 2633
           height: 739
         m_GraphElementMetaData:
         - m_Guid:

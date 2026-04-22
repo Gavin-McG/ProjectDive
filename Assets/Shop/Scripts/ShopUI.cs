@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using WolverineSoft.DialogueSystem;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(UIDocument))]
@@ -135,6 +136,8 @@ public class ShopUI : MonoBehaviour
             StopCoroutine(transitionCoroutine);
         }
         transitionCoroutine = StartCoroutine(CloseShopRoutine());
+
+        Managers.Get<DialogueManager>()?.AdvanceDialogue();
     }
 
     public void SetShopPage(int shopPageIndex)

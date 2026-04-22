@@ -111,7 +111,7 @@ public class DialogueUI : MonoBehaviour
     private void UpdateUI(DialogueInfo info)
     {
         //Close dialogue once the end is reached
-        if (info == null)
+        if (info == null || info.dialogueType == DialogueType.Stall)
         {
             CloseDialoguePanel();
             return;
